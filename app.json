@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "rotinaEncantadaApp",
+    "slug": "rotinaEncantadaApp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icone-estrela.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#CDE1DE"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icone-estrela.png",
+        "backgroundColor": "#CDE1DE"
+      }
+    },
+    "web": {
+      "favicon": "./assets/icone-estrela.png"
+    }
+  }
+}
