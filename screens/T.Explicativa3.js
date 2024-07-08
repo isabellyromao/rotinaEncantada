@@ -10,7 +10,9 @@ export default function Explicativa3(props){
             titulo="Recompensas Encantadoras" 
             subtitulo="Desbloqueie desenhos encantadores e explore seu lado artístico pintando."/>
 
+            <View style={{paddingBottom:16}}>
             <BotaoSecundario titulo='COMEÇAR JORNADA' />
+            </View>
 
             <StatusBar style="auto"/>
         </View>

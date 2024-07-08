@@ -22,6 +22,9 @@
     },
     "web": {
       "favicon": "./assets/icone-estrela.png"
-    }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }

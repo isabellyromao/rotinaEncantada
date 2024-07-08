@@ -15,7 +15,7 @@ export default function TelaInicial({navigation}){
         <Text>Seja Bem-Vindo!</Text>
   
         <View style={styles.botoes}>
-          <BotaoPrincipal titulo="ENTRAR" onPress={() => navigation.navigate('Explicativa2')}/>
+          <BotaoPrincipal titulo="ENTRAR" onPress={() => navigation.navigate('Explicativa1')}/>
           <BotaoSecundario titulo="CADASTRAR" onPress={() => navigation.navigate('Explicativa3')}/>
         </View>
   
