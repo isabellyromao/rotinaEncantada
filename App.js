@@ -1,76 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import TelaEntrando from './screens/T.Entrando';
+import TelaInicial from './screens/Inicial';
+import TelaTudoPronto from './screens/T.TudoPronto';
+import Explicativa1 from './screens/T.Explicativa1';
+import TelaCadastroRealizado from './screens/T.CadastroRealizado';
+import Explicativa2 from './screens/T.Explicativa2';
+import Explicativa3 from './screens/T.Explicativa3';
 
-const BotaoPrincipal = (props) => {
-  return(
-    <TouchableOpacity style={[styles.botaoPrincipal, 
-    {width: props.width || 322, height: props.height || 49, backgroundColor: "#CDE1DE", borderRadius:  8}]} onPress={props.onPress}>
-      <Text style={[styles.botaoTextoPrincipal, {color: "#300030"}]}>
-        {props.titulo}
-      </Text>
-    </TouchableOpacity>
-)
-};
 
-const BotaoSecundario = (props) => {
+const Stack = createNativeStackNavigator();
+
+export default function App() {
   return(
-  <TouchableOpacity style={[styles.botaoSecundario, 
-    {width: props.width || 322, height: props.heighat || 49, borderColor: "#300030", borderWidth: 1, borderRadius: 8}]} onPress={props.onPress}>
-      <Text style={[styles.botaoTextoSecundario, {color: "#300030"}]}>
-        {props.titulo}
-      </Text>
-  </TouchableOpacity>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Inicial" component={TelaInicial} options={{headerShown:false}}/>
+        <Stack.Screen name="Entrando" component={TelaEntrando} options={{headerShown: false}}/>
+        <Stack.Screen name="TudoPronto" component={TelaTudoPronto} options={{headerShown: false}}/>
+        <Stack.Screen name='CadastroRealizado' component={TelaCadastroRealizado} options={{headerShown: false}}/>
+        <Stack.Screen name="Explicativa1" component={Explicativa1} options={{headerShown: false}}/>
+        <Stack.Screen name="Explicativa2" component={Explicativa2} options={{headerShown: false}}/>
+        <Stack.Screen name="Explicativa3" component={Explicativa3} options={{headerShown: false}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      
-      <View style={styles.logo}>
-      <Image source={require('./assets/logo-texto.png')}/>
-      <Image source={require('./assets/logo-sapo.png')}/>
-      </View>
-
-      <Text>Seja Bem-Vindo!</Text>
-
-      <View style={styles.botoes}>
-        <BotaoPrincipal titulo="ENTRAR" />
-        <BotaoSecundario titulo="CADASTRAR"/>
-      </View>
-
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 16,
-    gap: 50
-
-  },
-
-  botaoPrincipal: {
-    alignItems: 'center',
-    justifyContent: "center",
-  },
-
-  botaoSecundario:{
-    alignItems:"center",
-    justifyContent: "center",
-  },
-
-  botoes:{
-    gap: 25
-  },
-
-  logo:{
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
