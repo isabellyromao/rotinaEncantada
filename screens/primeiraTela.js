@@ -15,8 +15,8 @@ export default function PrimeiraTela(){
         </View>
         <Text>Seja Bem-Vindo!</Text>
         <View style={styles.botoes}>
-          <BotaoPrincipal titulo="ENTRAR" onPress={() => router.push('../app/(rotas)/cadastro-realizado')}/>
-          <BotaoSecundario titulo="CADASTRAR" onPress={() => router.push('../app/(rotas)/tudo-pronto')}/>
+          <BotaoPrincipal titulo="ENTRAR" onPress={() => router.push('/cadastro-realizado')}/>
+          <BotaoSecundario titulo="CADASTRAR" onPress={() => router.push('/tudo-pronto')}/>
         </View>
   
         <StatusBar style="auto" />
