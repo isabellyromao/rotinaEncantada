@@ -1,9 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
-import { Explicativa, BotaoSecundario } from "./componentes";
-import styles from "./styles";
+import styles from './styles/geral'
+import { Explicativa, BotaoSecundario } from  "./componentes/geral";
 
-export default function Explicativa3(props){
+export default function TelaIntro3(props){
     return(
         <View style={styles.container}>
             <Explicativa imagem={require("../assets/img-pintar1.png")}

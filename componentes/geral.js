@@ -1,5 +1,5 @@
 import { TouchableOpacity, Text, View, Image, StyleSheet} from 'react-native';
-import styles from './styles'
+import styles from './styles/geral'
 
 export const BotaoPrincipal = (props) => {
     return(

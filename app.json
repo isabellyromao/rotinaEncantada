@@ -3,6 +3,7 @@
     "name": "rotinaEncantadaApp",
     "slug": "rotinaEncantadaApp",
     "version": "1.0.0",
+    "scheme": "rotinaEncantadaApp",
     "orientation": "portrait",
     "icon": "./assets/icone-estrela.png",
     "userInterfaceStyle": "light",
@@ -21,7 +22,8 @@
       }
     },
     "web": {
-      "favicon": "./assets/icone-estrela.png"
+      "favicon": "./assets/icone-estrela.png",
+      "bundler": "metro"
     },
     "plugins": [
       "expo-font"

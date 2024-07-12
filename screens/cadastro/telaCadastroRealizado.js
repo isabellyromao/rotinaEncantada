@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { View, Text } from "react-native";
-import styles from './styles'
-import { TelaTransicaoEstrela, BotaoSecundario } from "./componentes";
+import styles from './styles/geral'
+import { TelaTransicaoEstrela, BotaoSecundario } from  "./componentes/geral";
 
 export default function TelaCadastroRealizado(props){
     return(

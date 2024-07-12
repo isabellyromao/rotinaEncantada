@@ -1,9 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
-import { Explicativa, BotaoSecundario } from "./componentes";
-import styles from "./styles";
+import styles from './styles/geral'
+import { Explicativa, BotaoSecundario } from  "./componentes/geral";
 
-export default function Explicativa2({navigation}){
+export default function TelaIntro2({navigation}){
     return(
         <View style={styles.container}>
             <Explicativa imagem={require("../assets/img-dinossauro.png")}
