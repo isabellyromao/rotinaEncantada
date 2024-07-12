@@ -1,15 +1,14 @@
-import { TouchableOpacity, Text, View, Image, StyleSheet} from 'react-native';
-import styles from './styles/geral'
+import { TouchableOpacity, Text, View, Image} from 'react-native';
+import styles from "../styles/geral"
 
 export const BotaoPrincipal = (props) => {
     return(
       <TouchableOpacity style={[styles.botaoPrincipal, 
-      {width: props.width || 322, height: props.height || 49, backgroundColor: "#CDE1DE", borderRadius:  8}]} onPress={props.onPress}>
-  
+      {width: props.width || 322, height: props.height || 49, backgroundColor: "#CDE1DE", borderRadius:  8}]} 
+      onPress={props.onPress}>
         <Text style={[styles.botaoTextoPrincipal, {color: "#300030"}]}>
           {props.titulo}
         </Text>
-  
       </TouchableOpacity>
   )
   };
@@ -17,21 +16,19 @@ export const BotaoPrincipal = (props) => {
 export const BotaoSecundario = (props) => {
   return(
   <TouchableOpacity style={[styles.botaoSecundario, 
-    {width: props.width || 322, height: props.heighat || 49, borderColor: props.borderColor || "#300030", borderWidth: 1, borderRadius: 8}]} onPress={props.onPress}>
-
+    {width: props.width || 322, height: props.heighat || 49, borderColor: props.borderColor || "#300030", borderWidth: 1, borderRadius: 8}]} 
+    onPress={props.onPress}>
       <Text style={[styles.botaoTextoSecundario, {color: "#300030"}]}>
         {props.titulo}
       </Text>
-
   </TouchableOpacity>
   )
 }
 
-export const TelaTransicaoEstrela = (props) => {
+export const ComponenteTransicaoEstrela = (props) => {
   return(
       <View style={styles.container}>
           <Image source={require('../assets/icone-estrela.png')}/>
-
           <Text style={[styles.texto, {color: "#300030"}]}>
               {props.titulo}
           </Text>
@@ -39,15 +36,17 @@ export const TelaTransicaoEstrela = (props) => {
   )
 };
 
-export const Explicativa = (props) => {
+export const ComponenteTelaIntro = (props) => {
   return(
     <View style={styles.container}>
       <Image source={props.imagem}/>
-
       <View style={styles.textoExplicativo}>
-        <Text>{props.titulo}</Text>
-
-        <Text style={styles.subtitulo}>{props.subtitulo}</Text>
+        <Text>
+          {props.titulo}
+        </Text>
+        <Text style={styles.subtitulo}>
+          {props.subtitulo}
+        </Text>
       </View>
     </View>
   )
