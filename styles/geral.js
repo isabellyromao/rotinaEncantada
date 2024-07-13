@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 16,
-        marginTop: 10 
     },
 
     containerInicial: {
@@ -17,16 +16,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 16,
         gap: 50
-      },
-
-      botaoPrincipal: {
-        alignItems: 'center',
-        justifyContent: "center",
-      },
-    
-      botaoSecundario:{
-        alignItems:"center",
-        justifyContent: "center",
       },
     
       botoes:{
@@ -41,24 +30,18 @@ const styles = StyleSheet.create({
       textoFooter:{
         alignItems:"center",
         textAlign:"center",
-        paddingBottom: 50
-      },
-
-      textoExplicativo:{
-        alignItems: "center",
-        gap: 18,
+        paddingBottom: 50,
+        color: "#300030", 
+        fontSize: 16
       },
 
       botoesLadoaLado:{
         flexDirection:"row",
-        margin:16, 
-        marginTop: -10,
-        gap: 30
+        gap: 30,
+        paddingBottom:50
       },
 
-      subtitulo:{
-        textAlign: "center"
-      }
+   
 });
 
 export default styles;
