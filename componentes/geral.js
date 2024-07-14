@@ -1,8 +1,8 @@
 import { TouchableOpacity, Text, View, Image} from 'react-native';
 import { useFonts, NotoSans_600SemiBold  } from '@expo-google-fonts/noto-sans';
 import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
-import { Poppins_400Regular, Poppins_600SemiBold } from '@expo-google-fonts/poppins';
 import { StyleSheet } from 'react-native';
+import styles from '../styles/geral';
 
 export const BotaoPrincipal = (props) => {
   //O useFonts ajuda a carregar as fontes 
@@ -39,7 +39,7 @@ export const BotaoSecundario = (props) => {
 
   return(
   <TouchableOpacity style={[styles.botaoSecundario, 
-    {width: props.width || 322, height: props.heighat || 49, borderColor: props.borderColor || "#300030", borderWidth: 1, borderRadius: 8}]} 
+    {width: props.width || 322, height: props.height || 49, borderColor: props.borderColor || "#300030", borderWidth: 1, borderRadius: 8}]} 
     onPress={props.onPress}>
       <Text style={[styles.botaoTextoSecundario, {color: "#300030", fontFamily: "NotoSans_600SemiBold", fontSize:18}]}>
         {props.titulo}
@@ -69,32 +69,6 @@ export const ComponenteTransicaoEstrela = (props) => {
   )
 };
 
-export const ComponenteTelaIntro = (props) => {
-  //O useFonts ajuda a carregar as fontes 
-  let [fonteCarregada, fonteErro] = useFonts({
-    Poppins_600SemiBold,
-    Poppins_400Regular
-  });
-
-  //verrifica se a fonte foi carregada e se não existe erro
-  if (!fonteCarregada && !fonteErro) {
-    return null;
-  }
-
-  return(
-    <View style={styles.container}>
-      <Image source={props.imagem}/>
-      <View style={styles.textoExplicativo}>
-        <Text style={[{color: "#300030", fontFamily: "Poppins_600SemiBold", fontSize: 24}]}>
-          {props.titulo}
-        </Text>
-        <Text style={[styles.subtitulo, {color: "#300030", fontFamily: "Poppins_400Regular", fontSize: 16}]}>
-          {props.subtitulo}
-        </Text>
-      </View>
-    </View>
-  )
-};
 
 styles = StyleSheet.create({
   botaoPrincipal: {

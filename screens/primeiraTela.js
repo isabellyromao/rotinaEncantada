@@ -27,9 +27,9 @@ export default function PrimeiraTela(){
         <Text  style={[{color: "#300030", fontFamily: "Pompiere_400Regular", fontSize: 50}]}
           >Seja Bem-Vindo!
         </Text>
-        <View style={styles.botoes}>
+        <View style={{gap:25}}>
           <BotaoPrincipal titulo="ENTRAR" onPress={() => router.push('/cadastro-realizado')}/>
-          <BotaoSecundario titulo="CADASTRAR" onPress={() => router.push('/tudo-pronto')}/>
+          <BotaoSecundario titulo="CADASTRAR" onPress={() => router.push('/intro')}/>
         </View>
   
         <StatusBar style="auto" />

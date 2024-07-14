@@ -18,10 +18,6 @@ const styles = StyleSheet.create({
         gap: 50
       },
     
-      botoes:{
-        gap: 25
-      },
-    
       logo:{
         alignItems: "center",
         justifyContent: "center",
@@ -36,10 +32,32 @@ const styles = StyleSheet.create({
       },
 
       botoesLadoaLado:{
-        flexDirection:"row",
-        gap: 30,
-        paddingBottom:50
+        flexDirection: "row",
+        justifyContent: "space-between",
+        gap: 50,
+        paddingBottom: 50
       },
+
+      renderBotaoSemBorda:{
+        width: 162, 
+        height:49, 
+      },
+
+      renderBotaoComBorda:{
+        height:49, 
+        borderColor:"#300030", 
+        borderWidth: 1, 
+        borderRadius: 8,
+        justifyContent: "center"
+      },
+
+      renderTexto:{
+        color: "#300030", 
+        fontFamily: "NotoSans_600SemiBold", 
+        fontSize:18,
+        textAlign: "center"
+      }
+
 
    
 });
