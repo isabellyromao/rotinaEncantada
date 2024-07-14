@@ -2,7 +2,6 @@ import { TouchableOpacity, Text, View, Image} from 'react-native';
 import { useFonts, NotoSans_600SemiBold  } from '@expo-google-fonts/noto-sans';
 import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
 import { StyleSheet } from 'react-native';
-import styles from '../styles/geral';
 
 export const BotaoPrincipal = (props) => {
   //O useFonts ajuda a carregar as fontes 
@@ -62,7 +61,7 @@ export const ComponenteTransicaoEstrela = (props) => {
   return(
       <View style={styles.container}>
           <Image source={require('../assets/icone-estrela.png')}/>
-          <Text style={[{color: "#300030", fontFamily: "Pompiere_400Regular", fontSize: 40, textAlign: "center"}]}>
+          <Text style={[{color: "#300030", fontFamily: "Pompiere_400Regular", fontSize: 40, textAlign: "center", width: 243}]}>
               {props.titulo}
           </Text>
       </View>    

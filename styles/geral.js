@@ -33,9 +33,9 @@ const styles = StyleSheet.create({
 
       botoesLadoaLado:{
         flexDirection: "row",
-        justifyContent: "space-between",
-        gap: 50,
-        paddingBottom: 50
+        gap: 25,
+        paddingBottom: 50,
+        justifyContent: "center"
       },
 
       renderBotaoSemBorda:{
@@ -53,9 +53,17 @@ const styles = StyleSheet.create({
 
       renderTexto:{
         color: "#300030", 
-        fontFamily: "NotoSans_600SemiBold", 
         fontSize:18,
         textAlign: "center"
+      },
+
+      containerBotao:{
+        flex:1, 
+        backgroundColor: "#fff", 
+        padding:16, 
+        alignContent: "center", 
+        justifyContent: "center", 
+        alignItems: "center"
       }
 
 

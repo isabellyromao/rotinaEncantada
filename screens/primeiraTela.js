@@ -24,7 +24,7 @@ export default function PrimeiraTela(){
         <Image source={require('../assets/logo-texto.png')}/>
         <Image source={require('../assets/logo-sapo.png')}/>
         </View>
-        <Text  style={[{color: "#300030", fontFamily: "Pompiere_400Regular", fontSize: 50}]}
+        <Text  style={[{color: "#300030", fontFamily: "Pompiere_400Regular", fontSize: 50, marginBottom: 20}]}
           >Seja Bem-Vindo!
         </Text>
         <View style={{gap:25}}>

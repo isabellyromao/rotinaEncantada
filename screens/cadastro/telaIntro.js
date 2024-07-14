@@ -4,6 +4,7 @@ import styles from "../../styles/geral"
 import { router } from "expo-router";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { useFonts, Poppins_600SemiBold, Poppins_400Regular } from "@expo-google-fonts/poppins";
+import { NotoSans_600SemiBold } from "@expo-google-fonts/noto-sans";
 
 const slides =[{
     key: "1",
@@ -27,7 +28,8 @@ export default function TelaIntro(){
     //O useFonts ajuda a carregar as fontes 
     let [fonteCarregada, fonteErro] = useFonts({
     Poppins_600SemiBold,
-    Poppins_400Regular
+    Poppins_400Regular,
+    NotoSans_600SemiBold
     });
 
     //verrifica se a fonte foi carregada e se não existe erro
@@ -36,56 +38,58 @@ export default function TelaIntro(){
       }
 
     const renderItem = ({item}) => (
-        <View style={[styles.container, {paddingHorizontal: 50, justifyContent: "space-between"}]}>
+        <View style={{flex: 1, backgroundColor: "#fff", alignContent: "center", justifyContent: "center", alignItems: "center" }}>
             <Image source={item.imagem}/>
-            <View style={{alignContent: "center", justifyContent: "center"}}>
-                <Text style={[{color: "#300030", fontFamily: "Poppins_600SemiBold", fontSize: 24, textAlign: "center"}]}>
+            <View style={{flex:1, alignContent: "center", justifyContent: "center", alignItems: "center", gap:18, }}>
+                <Text style={[{color: "#300030", fontFamily: "Poppins_600SemiBold", fontSize: 24, textAlign: "center", width: 250}]}>
                     {item.titulo}
                 </Text>
-                <Text style={{color: "#300030", fontFamily: "Poppins_400Regular", fontSize: 16, textAlign: "center"}}>
+                <Text style={{color: "#300030", fontFamily: "Poppins_400Regular", fontSize: 16, textAlign: "center", width: 324}}>
                     {item.subtitulo}
                 </Text>
             </View>
-            <StatusBar style="auto"/>
         </View>
     )
     
     return(
-       <View style={{ flex: 1, backgroundColor: "#fff", paddingHorizontal: 16, alignContent: "center"}}>
+        <View style={{flex:1, backgroundColor: "#fff", paddingBottom:50}}>
+            <StatusBar style="auto"/>
             <AppIntroSlider
                 renderItem={renderItem}
                 data={slides}
-                onDone={() => {router.push('/cadastro-realizado')}}
-                showNextButton={true}
-                showPrevButton={true}
                 activeDotStyle={{
                     backgroundColor: "#388726",
                     width: 80,
-                    height: 8
+                    height: 8,
                 }}
                 dotStyle={{
                     backgroundColor: "#fff",
                     borderColor: "#388726",
                     borderWidth: 1,
                     width: 15,
-                    height: 8
+                    height: 8,
                 }}
                 renderPrevButton={() =>(
-                    <View style={styles.renderBotaoSemBorda}>
-                        <Text style={styles.renderTexto}>VOLTAR</Text>
+                    <View style={[styles.renderBotaoSemBorda, styles.containerBotao]}>
+                        <Text style={[styles.renderTexto, {fontFamily: "NotoSans_600SemiBold",}]}>VOLTAR</Text>
                     </View>
                 )}
                 renderNextButton={() => (
-                    <View style={[styles.renderBotaoComBorda, {width:162}]}>
-                        <Text style={styles.renderTexto}>PRÓXIMO</Text>
+                    <View style={[styles.renderBotaoComBorda, styles.containerBotao,{width:162}]}>
+                        <Text style={[styles.renderTexto, {fontFamily: "NotoSans_600SemiBold",}]}>PRÓXIMO</Text>
                     </View>
                 )}
                 renderDoneButton={() => (
-                    <View style={[styles.renderBotaoComBorda, {width: 322}]}>
-                        <Text style={styles.renderTexto}>COMEÇAR JORNADA</Text>
+                    <View style={[styles.renderBotaoComBorda, styles.containerBotao, {width: 322}]}>
+                        <Text style={[styles.renderTexto, {fontFamily: "NotoSans_600SemiBold",}]}>COMEÇAR JORNADA</Text>
                     </View>
                 )}
+
+                onDone={() => {router.push('/cadastro-realizado')}}
+                showNextButton={true}
+                showPrevButton={true}
+                
             />
-        </View> 
+        </View>
     )
 }
