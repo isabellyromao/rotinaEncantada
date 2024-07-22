@@ -4,6 +4,7 @@ import styles from "../styles/geral"
 import { BotaoPrincipal, BotaoSecundario } from  "../componentes/geral"
 import { router } from 'expo-router';
 import { useFonts, Pompiere_400Regular } from '@expo-google-fonts/pompiere';
+import { Button } from 'react-native-web';
 
 //As rotas são provisórias enquanto as outras telas não estão prontas e preciso testar as que estão
 
@@ -31,8 +32,13 @@ export default function PrimeiraTela(){
           <BotaoPrincipal titulo="ENTRAR" onPress={() => router.push('/cadastro-realizado')}/>
           <BotaoSecundario titulo="CADASTRAR" onPress={() => router.push('/intro')}/>
         </View>
+
+        <Button onPress={()=>{
+          fazerLogin();
+        }}>FAZ </Button>
   
         <StatusBar style="auto" />
       </View>
+
     );
   }
