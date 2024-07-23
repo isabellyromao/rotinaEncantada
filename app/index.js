@@ -1,22 +1,25 @@
 import { Redirect } from "expo-router";
 import { app } from "../firebaseConfig";
-import {signInwithEmailAndPassword,inicializeAuto,getReactNativePersistence } from "firebase/auth;";
+import {signInWithEmailAndPassword,initializeAuth,getReactNativePersistence } from "firebase/auth";
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
 export default function Home() {
+
+  
+
   return ( <Redirect href={"/(rotas)/primeira"}/>
 
 
 )};
 
-const fazerLogin =() =>{
-  const auth = inicializeAuth(app,{
+const fazerLogin =(email,senha) =>{
+  const auth = initializeAuth(app,{
     persistence: getReactNativePersistence(ReactNativeAsyncStorage)
   })
   
-  signInwithEmailAndPassword(auth, email, senha)
+  signInWithEmailAndPassword(auth, email, senha)
   .then((userCredential)=>{
     const user = userCredential.user;
     console.log("User signed in successfully:");

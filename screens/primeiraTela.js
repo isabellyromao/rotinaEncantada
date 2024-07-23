@@ -31,10 +31,13 @@ export default function PrimeiraTela(){
         <View style={{gap:25}}>
           <BotaoPrincipal titulo="ENTRAR" onPress={() => router.push('/cadastro-realizado')}/>
           <BotaoSecundario titulo="CADASTRAR" onPress={() => router.push('/intro')}/>
+
+         
+        
         </View>
 
-        <Button onPress={()=>{
-          fazerLogin();
+        <Button onPress={(email,senha)=>{
+          fazerLogin(email, senha);
         }}>FAZ </Button>
   
         <StatusBar style="auto" />
