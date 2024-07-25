@@ -24,11 +24,11 @@ export default function PrimeiraTela(){
         <Image source={require('../assets/logo-texto.png')}/>
         <Image source={require('../assets/logo-sapo.png')}/>
         </View>
-        <Text  style={[{color: "#300030", fontFamily: "Pompiere_400Regular", fontSize: 50, marginBottom: 20}]}
+        <Text  style={[{color: "#300030", fontFamily: "Pompiere_400Regular", fontSize: 50}]}
           >Seja Bem-Vindo!
         </Text>
         <View style={{gap:25}}>
-          <BotaoPrincipal titulo="ENTRAR" onPress={() => router.push('/cadastro-realizado')}/>
+          <BotaoPrincipal titulo="ENTRAR" onPress={() => router.push('/login')}/>
           <BotaoSecundario titulo="CADASTRAR" onPress={() => router.push('/intro')}/>
         </View>
         <StatusBar style="auto" />

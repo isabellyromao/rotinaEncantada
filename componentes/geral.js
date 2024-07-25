@@ -16,9 +16,9 @@ export const BotaoPrincipal = (props) => {
 
     return(
       <TouchableOpacity style={[styles.botaoPrincipal, 
-      {width: props.width || 322, height: props.height || 49, backgroundColor: "#CDE1DE", borderRadius:  8}]} 
+      {width: props.width || 322, height: props.height || 49, backgroundColor: props.backgroundColor || "#CDE1DE", borderRadius:  8}]} 
       onPress={props.onPress}>
-        <Text style={[styles.botaoTextoPrincipal, {color: "#300030", fontFamily: "NotoSans_600SemiBold", fontSize:18}]}>
+        <Text style={[styles.botaoTextoPrincipal, {color: props.color || "#300030", fontFamily: "NotoSans_600SemiBold", fontSize:18}]}>
           {props.titulo}
         </Text>
       </TouchableOpacity>
