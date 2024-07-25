@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { View, Image, Text } from "react-native";
 import styles from "../../styles/geral"
@@ -27,8 +27,6 @@ const slides =[{
 ]
 
 export default function TelaIntro(){
-    const [activeIndex, setActiveIndex] = useState(0);
-
     //O useFonts ajuda a carregar as fontes 
     let [fonteCarregada, fonteErro] = useFonts({
     Poppins_600SemiBold,
@@ -42,7 +40,8 @@ export default function TelaIntro(){
       }
 
     const renderItem = ({item}) => (
-        <View style={{flex: 1, backgroundColor: "#fff", alignContent: "center", justifyContent: "center", alignItems: "center", paddingTop: 50}}>
+        <View style={{flex: 1, backgroundColor: "#fff", alignContent: "center", justifyContent: "center", alignItems: "center"}}>
+
             <Image source={item.imagem}/>
             <View style={{alignContent: "center", justifyContent: "center", alignItems: "center", gap:18}}>
                 <Text style={[{color: "#300030", fontFamily: "Poppins_600SemiBold", fontSize: 24, textAlign: "center", width: 250}]}>
@@ -55,21 +54,17 @@ export default function TelaIntro(){
         </View>
     )
 
-    // Função para verificar se o slide atual é o último
-  const isLastSlide = () => activeIndex === slides.length - 1;
-
     return(
-        <View style={{flex:1, backgroundColor: "#fff", paddingBottom:50, alignContent: "center"}}>
+        <View style={{flex:1, backgroundColor: "#fff", paddingBottom:100, alignContent: "center"}}>
             <StatusBar style="auto"/>
             <AppIntroSlider
                 renderItem={renderItem}
                 data={slides}
-                activeIndex={activeIndex}
-                onSlideChange={(index) => setActiveIndex(index)}
                 activeDotStyle={{
                     backgroundColor: "#388726",
                     width: 80,
                     height: 8,
+                    marginBottom: 100
                 }}
                 dotStyle={{
                     backgroundColor: "#fff",
@@ -77,28 +72,22 @@ export default function TelaIntro(){
                     borderWidth: 1,
                     width: 15,
                     height: 8,
+                    marginBottom: 100
                 }}
-                renderPrevButton={() => !isLastSlide() && (
-                    <View style={[styles.renderBotaoSemBorda, styles.containerBotao]}>
-                        <Text style={[styles.renderTexto, {fontFamily: "NotoSans_600SemiBold",}]}>VOLTAR</Text>
-                    </View>
-                )}
-                renderNextButton={() => !isLastSlide() && (
-                    <View style={[styles.renderBotaoComBorda, styles.containerBotao,{width:162}]}>
-                        <Text style={[styles.renderTexto, {fontFamily: "NotoSans_600SemiBold",}]}>PRÓXIMO</Text>
+                renderNextButton={() => (
+                    <View style={styles.renderBotao}>
+                        <Text style={[styles.renderTexto, {fontFamily: "NotoSans_600SemiBold"}]}>PRÓXIMO</Text>
                     </View>
                 )}
                 renderDoneButton={() => (
-                    <View style={[styles.renderBotaoComBorda, styles.containerBotao, {width: 322}]}>
-                        <Text style={[styles.renderTexto, {fontFamily: "NotoSans_600SemiBold",}]}>COMEÇAR JORNADA</Text>
+                    <View style={styles.renderBotao}>
+                        <Text style={[styles.renderTexto, {fontFamily: "NotoSans_600SemiBold"}]}>COMEÇAR JORNADA</Text>
                     </View>
                 )}
                 
                 onDone={() => {router.push('/cadastro-realizado')}}
-                showNextButton={!isLastSlide()}
-                showPrevButton={!isLastSlide()}
-                onSlideChange={(index) => setActiveIndex(index)} // Atualizar índice do slide ativo
-                
+                showNextButton={true}
+                bottomButton
             />
         </View>
     )
