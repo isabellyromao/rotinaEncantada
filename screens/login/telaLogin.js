@@ -1,6 +1,6 @@
-import { Text, View, TextInput, Image } from "react-native";
+import { Text, View, TextInput, Image, ScrollView, Platform } from "react-native";
 import styles from '../../styles/geral'
-import { BotaoPrincipal} from  "../../componentes/geral"
+import { BotaoPrincipal, CampoLogin} from  "../../componentes/geral"
 import { Link } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useFonts, Pompiere_400Regular } from '@expo-google-fonts/pompiere';
@@ -18,7 +18,10 @@ export default function TelaLogin() {
   }
 
     return(
-        <View style={[styles.container, {gap:45, marginTop: 50} ]}>
+        <ScrollView 
+        contentContainerStyle={{ flexGrow: 1, paddingTop: 50 }} 
+      >
+        <View style={[styles.container, {gap:45, paddingTop: 50} ]}>
             <View style={{alignItems: "center", gap: 20}}>
                 <Text style={{fontFamily: "Pompiere_400Regular", fontSize: 40}}>Bem-Vindo De Volta</Text>
                 <Image source={require('../../assets/icone-sapo.png')}/>
@@ -28,9 +31,9 @@ export default function TelaLogin() {
                     <Image source={require('../../assets/detalhe-estrela.png')}/>
                     <Text style={{fontFamily: "Poppins_400Regular", fontSize: 14}}>LEMBRETE: A senha deve ter 6 números</Text>
                 </View>
-                <TextInput style={styles.renderBotao}></TextInput>
-                <TextInput style={styles.renderBotao}></TextInput>
-            <BotaoPrincipal titulo="ENTRAR"/>
+                <CampoLogin/>
+                <TextInput style={[styles.renderBotao, {paddingHorizontal:15}]} keyboardType="number" placeholder="Insira sua senha cadastrada" secureTextEntry></TextInput>
+                <BotaoPrincipal titulo="ENTRAR"/>
             </View>
             <View style={{flexDirection: "row", gap: 10, alignContent: "center"}} >
                 <Text>______________________</Text>
@@ -44,5 +47,6 @@ export default function TelaLogin() {
             </View>
             <StatusBar style="auto" />
         </View>
+        </ScrollView>
     )
 }

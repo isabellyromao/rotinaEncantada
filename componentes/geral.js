@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text, View, Image} from 'react-native';
+import { TouchableOpacity, Text, View, Image, TextInput} from 'react-native';
 import { useFonts, NotoSans_600SemiBold  } from '@expo-google-fonts/noto-sans';
 import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
 import { StyleSheet } from 'react-native';
@@ -68,6 +68,12 @@ export const ComponenteTransicaoEstrela = (props) => {
   )
 };
 
+export const CampoLogin = () => {
+  return(
+    <TextInput style={styles.campoLogin} placeholder='Insira seu email cadastrado'/>
+  )
+}
+
 
 styles = StyleSheet.create({
   botaoPrincipal: {
@@ -95,5 +101,15 @@ styles = StyleSheet.create({
 
   subtitulo:{
     textAlign: "center"
+  },
+  campoLogin:{
+    height:49,
+    borderColor:"#300030", 
+    borderWidth: 1, 
+    borderRadius: 8,
+    justifyContent: "center",
+    width: 322,
+    alignSelf: "center",
+    padding: 14
   }
 })
