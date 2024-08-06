@@ -1,4 +1,4 @@
-import { Text, View, TextInput, Image, ScrollView, Platform } from "react-native";
+import { Text, View, TextInput, Image, ScrollView } from "react-native";
 import styles from '../../styles/geral'
 import { BotaoPrincipal, CampoLogin} from  "../../componentes/geral"
 import { Link } from "expo-router";

@@ -6,6 +6,7 @@ export default function LayoutRaizDeNavegacao() {
       <Stack screenOptions={{headerShown:false}}>
         <Stack.Screen name="(rotas)/primeira/index"/>
         <Stack.Screen name="(rotas)/login/index"/> 
+        <Stack.Screen name="(rotas)/cadastroDadosPessoais/index"/> 
         <Stack.Screen name="(rotas)/entrando/index"/>
         <Stack.Screen name="(rotas)/intro/index"/>
         <Stack.Screen name="(rotas)/tudo-pronto/index"/>
