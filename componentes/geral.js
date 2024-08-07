@@ -2,6 +2,10 @@ import { TouchableOpacity, Text, View, Image, TextInput} from 'react-native';
 import { useFonts, NotoSans_600SemiBold  } from '@expo-google-fonts/noto-sans';
 import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
 import { StyleSheet } from 'react-native';
+import { useState } from 'react';
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 export const BotaoPrincipal = (props) => {
   //O useFonts ajuda a carregar as fontes 
@@ -68,9 +72,44 @@ export const ComponenteTransicaoEstrela = (props) => {
   )
 };
 
-export const CampoLogin = () => {
+export const CampoEmail = () => {
+  const [email, setEmail] = useState('');
+
   return(
-    <TextInput style={styles.campoLogin} placeholder='Insira seu email cadastrado'/>
+    <View style={styles.Campos}>
+      <MaterialCommunityIcons name="email-outline" size={22} color="#300030" style={{alignSelf: "center", width:35 }} />
+      <TextInput style={{flex: 1}}
+        label="E-mail" value={email} onChangeText={setEmail} placeholder='Insira seu email cadastrado'/>
+  </View>
+  )
+}
+
+export const CampoSenha = () => {
+  const [senha, setSenha] = useState('');
+  const [esconderSenha, setEsconderSenha] = useState(true);
+
+  return (
+    <View style={styles.Campos}>
+      <TouchableOpacity style={[styles.iconeBotao, esconderSenha && styles.iconeBotaoAtivado]} onPress={() => setEsconderSenha(true)}>
+        <MaterialCommunityIcons name="lock-outline" size={22} color="#300030" style={{alignSelf: "center"}}/>
+      </TouchableOpacity>
+      <TextInput style={{ flex: 1}}
+        keyboardType="number"placeholder="Insira sua senha cadastrada"
+        secureTextEntry={esconderSenha} label="Senha" value={senha} onChangeText={setSenha}/>
+      <TouchableOpacity  style={[styles.iconeBotao, !esconderSenha && styles.iconeBotaoAtivado]} onPress={() => setEsconderSenha(false)}>
+        <MaterialCommunityIcons name="lock-open-outline" size={22} color="#300030" style={{alignSelf: "center"}}/>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+
+export const Lembrete = () => {
+  return(
+    <View style={{flexDirection: "row", gap: 15}}>
+        <Image source={require('../assets/detalhe-estrela.png')}/>
+        <Text style={{fontFamily: "Poppins_400Regular", fontSize: 14}}>LEMBRETE: A senha deve ter 6 números</Text>
+    </View>
   )
 }
 
@@ -111,5 +150,27 @@ styles = StyleSheet.create({
     width: 322,
     alignSelf: "center",
     padding: 14
-  }
+  },
+  Campos:{
+    paddingHorizontal:15, 
+    flexDirection: "row", 
+    gap: 10,
+    height:49,
+    borderColor:"#300030", 
+    borderWidth: 1, 
+    borderRadius: 8,
+    width: 322,
+  },
+
+  iconeBotao: {
+    borderRadius: 100,
+    height: 35,
+    width: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: "center"
+  },
+  iconeBotaoAtivado: {
+    backgroundColor: '#CDE1DE',
+  },
 })
