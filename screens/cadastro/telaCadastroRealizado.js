@@ -22,10 +22,13 @@ let [fonteCarregada, fonteErro] = useFonts({
                 Deseja adicionar {"\n"}algum membro familiar?
             </Text>
             <View style={styles.botoesLadoaLado}>
-                <BotaoSecundario titulo='SIM' width={68}  />
-                <BotaoSecundario titulo='NÃO' width={68} />
+                <BotaoSecundario titulo='SIM' width={68} onPress={() => router.push('/adicionar-perfil')}  />
+                <BotaoSecundario titulo='NÃO' width={68} onPress={() => router.push('/home')}/>
             </View>
             <StatusBar style="auto"/>
         </View>
     )
 } 
+
+
+//As telas das duas rotas ainda serão feitas

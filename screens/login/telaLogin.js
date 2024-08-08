@@ -61,7 +61,7 @@ export default function TelaLogin() {
                 <Text style={{fontFamily: "Poppins_400Regular", fontSize: 14}}> OU </Text>
                 <Text>______________________</Text>
             </View>
-            <BotaoPrincipal titulo="ESQUECI A SENHA" backgroundColor="#415E3E" color="#FFFFFF"/>
+            <BotaoPrincipal titulo="ESQUECI A SENHA" backgroundColor="#415E3E" color="#FFFFFF" onPress={() => router.push('/esqueci-senha')}/>
             <View style={{flexDirection: "row", gap: 10, alignContent: "center"}}>
                 <Text style={{fontFamily: "Poppins_300Light", fontSize: 14}}>Ainda não tem uma conta?</Text>
                 <Link style={{fontFamily: "Poppins_600SemiBold", fontSize: 14}} href={'\cadastro-dados-pessoais'}>Se cadastre!</Link>
