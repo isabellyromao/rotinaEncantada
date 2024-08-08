@@ -47,7 +47,7 @@ export default function TelaEsqueciSenha() {
             <View style={{paddingVertical:40, gap:30}}>
             <View style={styles.Campos}>
                 <MaterialCommunityIcons name="email-outline" size={22} color="#300030" style={{alignSelf: "center", width:35 }} />
-                <TextInput style={{flex: 1}}
+                <TextInput style={{flex: 1, fontFamily:"Poppins_300Light", fontSize: 14}}
                     label="E-mail" value={email} onChangeText={setEmail} placeholder='Insira seu email cadastrado'/>
             </View>
                 <BotaoPrincipal titulo="ENVIAR" backgroundColor="#415E3E" color="#FFFFFF" onPress={handleEsqueciSenha} loading={loading}/>

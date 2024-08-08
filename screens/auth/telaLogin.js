@@ -55,14 +55,14 @@ export default function TelaLogin() {
                 <Lembrete/>
                 <View style={styles.Campos}>
                   <MaterialCommunityIcons name="email-outline" size={22} color="#300030" style={{alignSelf: "center", width:35 }} />
-                  <TextInput style={{flex: 1}}
+                  <TextInput style={{flex: 1,  fontFamily:"Poppins_300Light", fontSize: 14}}
                     label="E-mail" value={email} onChangeText={setEmail} placeholder='Insira seu email cadastrado'/>
                 </View>   
                 <View style={styles.Campos}>
                   <TouchableOpacity style={[styles.iconeBotao, esconderSenha && styles.iconeBotaoAtivado]} onPress={() => setEsconderSenha(true)}>
                     <MaterialCommunityIcons name="lock-outline" size={22} color="#300030" style={{alignSelf: "center"}}/>
                   </TouchableOpacity>
-                  <TextInput style={{ flex: 1}}
+                  <TextInput style={{ flex: 1, fontFamily:"Poppins_300Light", fontSize: 14}}
                     keyboardType="number"placeholder="Insira sua senha cadastrada"
                     secureTextEntry={esconderSenha} label="Senha" value={senha} onChangeText={setSenha}/>
                   <TouchableOpacity  style={[styles.iconeBotao, !esconderSenha && styles.iconeBotaoAtivado]} onPress={() => setEsconderSenha(false)}>
