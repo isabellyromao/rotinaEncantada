@@ -2,15 +2,19 @@ import { useState } from "react";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { Link, useRouter } from "expo-router";
-import { Text, View, Image, ScrollView } from "react-native";
+import { Text, View, Image, ScrollView, TextInput, TouchableOpacity } from "react-native";
 import styles from '../../styles/geral'
-import { BotaoPrincipal, CampoEmail, CampoSenha, Lembrete} from  "../../componentes/geral"
+import { BotaoPrincipal, Lembrete} from  "../../componentes/geral"
 import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
 import { Poppins_400Regular, Poppins_300Light, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
 import { auth } from '../../firebaseConfig';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function TelaLogin() {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [esconderSenha, setEsconderSenha] = useState(true);
   const [loading, setLoading] = useState(false);
   const router = useRouter();  
 
@@ -49,8 +53,22 @@ export default function TelaLogin() {
             </View>
             < View style={{alignItems: "center", gap: 20}}>
                 <Lembrete/>
-                <CampoEmail/>
-                <CampoSenha/>
+                <View style={styles.Campos}>
+                  <MaterialCommunityIcons name="email-outline" size={22} color="#300030" style={{alignSelf: "center", width:35 }} />
+                  <TextInput style={{flex: 1}}
+                    label="E-mail" value={email} onChangeText={setEmail} placeholder='Insira seu email cadastrado'/>
+                </View>   
+                <View style={styles.Campos}>
+                  <TouchableOpacity style={[styles.iconeBotao, esconderSenha && styles.iconeBotaoAtivado]} onPress={() => setEsconderSenha(true)}>
+                    <MaterialCommunityIcons name="lock-outline" size={22} color="#300030" style={{alignSelf: "center"}}/>
+                  </TouchableOpacity>
+                  <TextInput style={{ flex: 1}}
+                    keyboardType="number"placeholder="Insira sua senha cadastrada"
+                    secureTextEntry={esconderSenha} label="Senha" value={senha} onChangeText={setSenha}/>
+                  <TouchableOpacity  style={[styles.iconeBotao, !esconderSenha && styles.iconeBotaoAtivado]} onPress={() => setEsconderSenha(false)}>
+                    <MaterialCommunityIcons name="lock-open-outline" size={22} color="#300030" style={{alignSelf: "center"}}/>
+                  </TouchableOpacity>
+                </View>
                 <BotaoPrincipal titulo="ENTRAR"onPress={handleLogin} loading={loading}/>
             </View>
             <View style={{flexDirection: "row", gap: 10, alignContent: "center"}} >
