@@ -1,12 +1,12 @@
 import React from "react";
+import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { useFonts } from "expo-font";
 import { View, Image, Text } from "react-native";
 import styles from "../../styles/geral"
-import { router } from "expo-router";
 import AppIntroSlider from "react-native-app-intro-slider";
-import { useFonts, Poppins_600SemiBold, Poppins_400Regular } from "@expo-google-fonts/poppins";
+import { Poppins_600SemiBold, Poppins_400Regular } from "@expo-google-fonts/poppins";
 import { NotoSans_600SemiBold } from "@expo-google-fonts/noto-sans";
-
 
 const slides =[{
     key: "1",
@@ -27,21 +27,17 @@ const slides =[{
 ]
 
 export default function TelaIntro(){
-    //O useFonts ajuda a carregar as fontes 
     let [fonteCarregada, fonteErro] = useFonts({
-    Poppins_600SemiBold,
-    Poppins_400Regular,
+    Poppins_600SemiBold, Poppins_400Regular,
     NotoSans_600SemiBold
     });
 
-    //verrifica se a fonte foi carregada e se não existe erro
     if (!fonteCarregada && !fonteErro) {
-    return null;
-      }
+        return null;
+      };
 
     const renderItem = ({item}) => (
         <View style={{flex: 1, backgroundColor: "#fff", alignContent: "center", justifyContent: "center", alignItems: "center"}}>
-
             <Image source={item.imagem}/>
             <View style={{alignContent: "center", justifyContent: "center", alignItems: "center", gap:18}}>
                 <Text style={[{color: "#300030", fontFamily: "Poppins_600SemiBold", fontSize: 24, textAlign: "center", width: 250}]}>
@@ -85,7 +81,7 @@ export default function TelaIntro(){
                     </View>
                 )}
                 
-                onDone={() => {router.push('/cadastro-realizado')}}
+                onDone={() => {router.push('/cadastro-dados-pessoais')}}
                 showNextButton={true}
                 bottomButton
             />

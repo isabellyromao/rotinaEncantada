@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 16,
-        gap: 50
+        gap: 40
       },
     
       logo:{
@@ -46,14 +46,19 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         width: 322,
         alignSelf: "center"
-
       },
 
       renderTexto:{
         color: "#300030", 
         fontSize:18,
         textAlign: "center"
-        
+      },
+
+      fundoAvatar:{
+        width:145,
+        height:145,
+        backgroundColor:"#CDE1DE",
+        borderRadius:100
       }
    
 });

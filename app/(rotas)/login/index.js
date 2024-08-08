@@ -1,4 +1,4 @@
-import TelaLogin from '../../../screens/login/telaLogin'
+import TelaLogin from '../../../screens/auth/telaLogin'
 
 export default function Login(){
     return(

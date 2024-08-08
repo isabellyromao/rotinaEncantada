@@ -1,27 +1,24 @@
-import { TouchableOpacity, Text, View, Image, TextInput} from 'react-native';
-import { useFonts, NotoSans_600SemiBold  } from '@expo-google-fonts/noto-sans';
-import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
-import { StyleSheet } from 'react-native';
 import { useState } from 'react';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { useFonts } from 'expo-font';
+import { StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, View, Image, TextInput} from 'react-native';
+import { NotoSans_600SemiBold  } from '@expo-google-fonts/noto-sans';
+import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
 export const BotaoPrincipal = (props) => {
-  //O useFonts ajuda a carregar as fontes 
   let [fonteCarregada, fonteErro] = useFonts({
     NotoSans_600SemiBold
   });
 
-  //verrifica se a fonte foi carregada e se não existe erro
   if (!fonteCarregada && !fonteErro) {
     return null;
-  }
+  };
 
     return(
       <TouchableOpacity style={[styles.botaoPrincipal, 
-      {width: props.width || 322, height: props.height || 49, backgroundColor: props.backgroundColor || "#CDE1DE", borderRadius:  8}]} 
-      onPress={props.onPress}>
+        {width: props.width || 322, height: props.height || 49, backgroundColor: props.backgroundColor || "#CDE1DE", borderRadius:  8}]} 
+        onPress={props.onPress}>
         <Text style={[styles.botaoTextoPrincipal, {color: props.color || "#300030", fontFamily: "NotoSans_600SemiBold", fontSize:18}]}>
           {props.titulo}
         </Text>
@@ -29,21 +26,19 @@ export const BotaoPrincipal = (props) => {
   )
   };
   
-export const BotaoSecundario = (props) => {
-  //O useFonts ajuda a carregar as fontes 
+export const BotaoSecundario = (props) => { 
   let [fonteCarregada, fonteErro] = useFonts({
     NotoSans_600SemiBold
   });
 
-  //verrifica se a fonte foi carregada e se não existe erro
   if (!fonteCarregada && !fonteErro) {
     return null;
-  }
+  };
 
   return(
   <TouchableOpacity style={[styles.botaoSecundario, 
-    {width: props.width || 322, height: props.height || 49, borderColor: props.borderColor || "#300030", borderWidth: 1, borderRadius: 8}]} 
-    onPress={props.onPress}>
+      {width: props.width || 322, height: props.height || 49, borderColor: props.borderColor || "#300030", borderWidth: 1, borderRadius: 8}]} 
+      onPress={props.onPress}>
       <Text style={[styles.botaoTextoSecundario, {color: "#300030", fontFamily: "NotoSans_600SemiBold", fontSize:18}]}>
         {props.titulo}
       </Text>
@@ -52,12 +47,10 @@ export const BotaoSecundario = (props) => {
 }
 
 export const ComponenteTransicaoEstrela = (props) => {
-    //O useFonts ajuda a carregar as fontes 
     let [fonteCarregada, fonteErro] = useFonts({
       Pompiere_400Regular
     });
   
-    //verrifica se a fonte foi carregada e se não existe erro
     if (!fonteCarregada && !fonteErro) {
       return null;
     }

@@ -1,4 +1,4 @@
-import TelaCadastroRealizado from "../../../screens/cadastro/telaCadastroRealizado"
+import TelaCadastroRealizado from "../../../screens/transicoes/telaCadastroRealizado"
 
 export default function CadastroRealizado(){
     return(

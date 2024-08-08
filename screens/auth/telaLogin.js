@@ -1,26 +1,23 @@
+import { useState } from "react";
+import { useFonts } from "expo-font";
+import { StatusBar } from "expo-status-bar";
+import { Link, useRouter } from "expo-router";
 import { Text, View, Image, ScrollView } from "react-native";
 import styles from '../../styles/geral'
 import { BotaoPrincipal, CampoEmail, CampoSenha, Lembrete} from  "../../componentes/geral"
-import { Link, useRouter } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
 import { Poppins_400Regular, Poppins_300Light, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
 import { auth } from '../../firebaseConfig';
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
-import { useFonts } from "expo-font";
-
 
 export default function TelaLogin() {
-    const [loading, setLoading] = useState(false);
-    const router = useRouter();  
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();  
 
-    //O useFonts ajuda a carregar as fontes 
  let [fonteCarregada, fonteErro] = useFonts({
     Pompiere_400Regular, Poppins_400Regular, Poppins_300Light, Poppins_600SemiBold
   });
 
-  //verrifica se a fonte foi carregada e se não existe erro
   if (!fonteCarregada && !fonteErro) {
     return null;
   }

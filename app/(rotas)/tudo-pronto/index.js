@@ -1,4 +1,4 @@
-import TelaTudoPronto from "../../../screens/cadastro/telaTudoPronto"
+import TelaTudoPronto from "../../../screens/transicoes/telaTudoPronto"
 
 export default function TudoPronto(){
     return(

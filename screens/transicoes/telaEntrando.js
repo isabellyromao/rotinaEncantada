@@ -6,8 +6,9 @@ import { ComponenteTransicaoEstrela } from  "../../componentes/geral";
 export default function TelaEntrando(){
     return(
         <View style={styles.container}>
-            <ComponenteTransicaoEstrela titulo="Entrando..."/>
             <StatusBar style="auto"/>
+            <ComponenteTransicaoEstrela titulo="Entrando..."/>
+            
         </View>
     )
 } 
