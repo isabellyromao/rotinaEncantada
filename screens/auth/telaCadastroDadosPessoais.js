@@ -2,19 +2,15 @@ import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { Link } from "expo-router";
-import { View, TextInput, ScrollView, Text, Image, TouchableOpacity } from "react-native";
+import { View, TextInput, ScrollView, Text, Image } from "react-native";
 import styles from '../../styles/geral'
 import { BotaoSecundario } from "../../componentes/geral";
 import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
 import { Poppins_300Light, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
 import { NotoSans_600SemiBold } from "@expo-google-fonts/noto-sans";
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Lembrete } from "../../componentes/geral";
 
 export default function TelaCadastroDadosPessoais() {
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [esconderSenha, setEsconderSenha] = useState(true);
+
 
     let [fonteCarregada, fonteErro] = useFonts({
         Pompiere_400Regular,
