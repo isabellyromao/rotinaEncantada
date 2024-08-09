@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
-import { useRouter } from 'expo-router';
+import { useRouter, router } from 'expo-router';
 import { Alert } from "react-native";
 import styles from "../../styles/geral"
 import {  BotaoPrincipal } from "../../componentes/geral";
 import { View, Image, Text, ScrollView, TextInput } from "react-native";
 import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
+import { Poppins_300Light } from "@expo-google-fonts/poppins";
 import { auth } from '../../firebaseConfig';
 import { sendPasswordResetEmail, fetchSignInMethodsForEmail } from "firebase/auth";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -21,7 +22,6 @@ export default function TelaEsqueciSenha() {
     const router = useRouter();
 
     const handleEsqueciSenha = async () => {
-
         if (!email) {
             Alert.alert("Erro", "Por favor, preencha todos os campos.");  // Alert for empty fields
             return;
@@ -43,7 +43,7 @@ export default function TelaEsqueciSenha() {
             console.log("Métodos de login encontrados:", signInMethods);
     
             if (signInMethods.length === 0) {
-                Alert.alert("Erro", "Não há uma conta registrada com esse e-mail.");
+                Alert.alert("Erro", "Não há uma conta registrada com esse e-mail. ");
                 setLoading(false);
                 return;
             }
@@ -64,7 +64,8 @@ export default function TelaEsqueciSenha() {
     };
 
     let [fonteCarregada, fonteErro] = useFonts({
-        Pompiere_400Regular
+        Pompiere_400Regular,
+        Poppins_300Light
       });
 
     if (!fonteCarregada && !fonteErro) {

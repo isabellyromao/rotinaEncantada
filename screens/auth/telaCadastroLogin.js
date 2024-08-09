@@ -67,7 +67,6 @@ const terSeisNumeros = (password) => (password.match(/\d/g) || []).length == 6;
                     setLoading(false);
                     return;
                 }
-
                 await createUserWithEmailAndPassword(auth, email, senha);
                 setLoading(false);
                 router.replace('/tudo-pronto');
