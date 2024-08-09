@@ -49,6 +49,7 @@ export default function TelaLogin() {
       router.replace('/entrando');
     } catch (error) {
       console.log("Código do erro Firebase:", error.code);
+      console.error(error.message);
       setLoading(false);
       let errorMessage = "Ocorreu um erro. \nTente novamente com atenção :).";  // Default message
 

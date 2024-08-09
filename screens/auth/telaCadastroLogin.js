@@ -2,9 +2,10 @@ import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { router, useRouter } from 'expo-router';
+import { Alert } from "react-native";
 import { Link } from "expo-router";
 import { auth } from '../../firebaseConfig';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail  } from "firebase/auth";
 import { View, TextInput, ScrollView, Text, Image, TouchableOpacity } from "react-native";
 import styles from '../../styles/geral'
 import { BotaoSecundario } from "../../componentes/geral";
@@ -21,33 +22,72 @@ export default function TelaCadastroLogin() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
-    const validarSenha = (senha1, senha2) => {
-        var validada = false;
-        const regex = /^[0-9]{6}$/; // Expressão regular para verificar se são exatamente 6 dígitos numéricos
     
+// Função para validar e-mail
+const emailValido = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+// Função para verificar se a senha contém pelo menos 6 números
+const terSeisNumeros = (password) => (password.match(/\d/g) || []).length == 6;
+
+    const validarSenha = (senha1, senha2) => {
         if(senha1 !== senha2) {
-            Alert.alert('Senhas diferentes', 'As duas senhas devem ser iguais. Por favor refaça com atenção :)');
-        } else if(!regex.test(senha1)) {
-            Alert.alert('Senha inválida', 'A senha deve conter exatamente 6 números. Por favor refaça com atenção :)');
-        } else {
+            Alert.alert('Senhas diferentes', 'As duas senhas devem ser iguais. \nPor favor refaça com atenção :)');
+        } 
+        else {
             validada = true;
         }
         return validada;
     }
     
       const handleCadastrar = async () => {
+
+        if (!email || !senha || !repetirSenha) {
+            Alert.alert("Erro", "Por favor, preencha todos os campos.");  // Alert for empty fields
+            return;
+          }
+      
+          if (!emailValido(email)) {
+            Alert.alert("Erro", "E-mail inválido. \nVerifique o formato do seu e-mail. \nTente novamente com atenção :)");
+            return;
+          }
+      
+          if (!terSeisNumeros(senha, repetirSenha)){
+            Alert.alert("Erro", "Senha inválida. Deve conter 6 números. \nTente novamente com atenção :)");
+            return;
+          }
+
         try {
             const validada = validarSenha(senha, repetirSenha);
             if(validada) {
                 setLoading(true);
+
+                const signInMethods = await fetchSignInMethodsForEmail(auth, email);
+                if (signInMethods.length > 0) {
+                    Alert.alert("Erro", "O e-mail já está cadastrado. \nTente fazer login ou use um e-mail diferente.");
+                    setLoading(false);
+                    return;
+                }
+
                 await createUserWithEmailAndPassword(auth, email, senha);
                 setLoading(false);
-                router.replace('/home');
+                router.replace('/tudo-pronto');
             }
         } catch (error) {
             console.error(error.code);
             console.error(error.message);
             setLoading(false);
+
+            let errorMessage = "Ocorreu um erro. \nTente novamente mais tarde.";
+            // Customize error messages based on Firebase error codes
+            switch (error.code) {
+                case 'auth/email-already-in-use':
+                    errorMessage = "O e-mail já está em uso. \nTente fazer login ou use um e-mail diferente :)";
+                    break;
+                default:
+                    errorMessage = "Ocorreu um erro. \nTente novamente mais tarde.";
+                    break;
+            }
+            Alert.alert("Erro", errorMessage);
         }
       }
 
@@ -72,7 +112,7 @@ export default function TelaCadastroLogin() {
                 <View style={styles.Campos}>
                     <MaterialCommunityIcons name="email-outline" size={22} color="#300030" style={{alignSelf: "center", width:35 }} />
                     <TextInput style={{flex: 1,  fontFamily:"Poppins_300Light", fontSize: 14}}
-                        label="E-mail" value={email} onChangeText={setEmail} placeholder='Insira seu email cadastrado' />
+                        label="E-mail" value={email} onChangeText={setEmail} placeholder='Insira seu email' keyboardType='email-address'/>
                 </View> 
                 <Lembrete/>
                 <View style={styles.Campos}>
@@ -80,7 +120,7 @@ export default function TelaCadastroLogin() {
                     <MaterialCommunityIcons name="lock-outline" size={22} color="#300030" style={{alignSelf: "center"}}/>
                     </TouchableOpacity>
                     <TextInput style={{ flex: 1, fontFamily:"Poppins_300Light", fontSize: 14}}
-                    keyboardType="number"placeholder="Insira sua senha cadastrada"
+                    keyboardType="numeric"placeholder="Insira sua senha "
                     secureTextEntry={esconderSenha} label="Senha" value={senha} onChangeText={setSenha}/>
                     <TouchableOpacity  style={[styles.iconeBotao, !esconderSenha && styles.iconeBotaoAtivado]} onPress={() => setEsconderSenha(false)}>
                     <MaterialCommunityIcons name="lock-open-outline" size={22} color="#300030" style={{alignSelf: "center"}}/>
@@ -91,7 +131,7 @@ export default function TelaCadastroLogin() {
                     <MaterialCommunityIcons name="lock-outline" size={22} color="#300030" style={{alignSelf: "center"}}/>
                     </TouchableOpacity>
                     <TextInput style={{ flex: 1, fontFamily:"Poppins_300Light", fontSize: 14}}
-                    keyboardType="number"placeholder="Insira sua senha cadastrada"
+                    keyboardType="numeric"placeholder="Confirme sua senha"
                     secureTextEntry={esconderSenha} label="RepetirSenha" value={repetirSenha} onChangeText={setRepetirSenha}/>
                     <TouchableOpacity  style={[styles.iconeBotao, !esconderSenha && styles.iconeBotaoAtivado]} onPress={() => setEsconderSenha(false)}>
                     <MaterialCommunityIcons name="lock-open-outline" size={22} color="#300030" style={{alignSelf: "center"}}/>
