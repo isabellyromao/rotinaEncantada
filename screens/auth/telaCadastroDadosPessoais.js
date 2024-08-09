@@ -1,5 +1,6 @@
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
+import { router } from 'expo-router';
 import { useState } from "react";
 import { Link } from "expo-router";
 import { View, TextInput, ScrollView, Text, Image } from "react-native";

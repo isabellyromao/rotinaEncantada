@@ -6,13 +6,13 @@ import { ComponenteTransicaoEstrela, BotaoSecundario } from  "../../componentes/
 import { Poppins_400Regular } from "@expo-google-fonts/poppins";
 
 export default function TelaCadastroRealizado(){
-let [fonteCarregada, fonteErro] = useFonts({
-    Poppins_400Regular
-  });
+    let [fonteCarregada, fonteErro] = useFonts({
+        Poppins_400Regular
+    });
 
-  if (!fonteCarregada && !fonteErro) {
-    return null;
-  };
+    if (!fonteCarregada && !fonteErro) {
+        return null;
+    };
 
     return(
         <View style={styles.container}>
