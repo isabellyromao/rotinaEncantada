@@ -1,6 +1,6 @@
 import { Redirect } from "expo-router";
 
-export default function Home() {
-  return ( <Redirect href={"/(rotas)/primeira"}/>
+export default function Inicio() {
+  return ( <Redirect href={"/(tabs)/index"}/>
 )
 };
