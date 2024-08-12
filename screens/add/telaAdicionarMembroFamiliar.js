@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView, Image, TextInput} from "react-native";
 import styles from "../../styles/geral"
 import { BotaoSecundario } from  "../../componentes/geral";
 import { Poppins_400Regular } from "@expo-google-fonts/poppins";
@@ -23,7 +23,7 @@ export default function TelaAdicionarMembro(){
         <View style={[styles.container, {gap:40, paddingTop:50}]}>
         <StatusBar style="auto" />
             <>
-                <Text style={[{color: "#300030", fontFamily: "Pompiere_400Regular", fontSize: 40}]}>Adicionar Membro Familiar</Text>
+                <Text style={[{color: "#300030", fontFamily: "Pompiere_400Regular", fontSize: 40, width:265, textAlign: "center"}]}>Adicionar Membro Familiar</Text>
                 <Image source={require('../../assets/icone-estrela-Feliz.png')}/>
             </>
             <View style={{gap:20}}>
@@ -41,10 +41,9 @@ export default function TelaAdicionarMembro(){
                 <TextInput style={{borderBottomWidth: 1, width:270, fontFamily:"Poppins_300Light", fontSize: 14}} placeholder="Insira ou selecione seu gênero"/>
                 <TextInput style={{borderBottomWidth: 1, width:270, fontFamily:"Poppins_300Light", fontSize: 14}} placeholder="O que essa pessoa é sua?"/>
             </View>
-            <BotaoSecundario titulo="CONTINUAR" width={162} onPress={() => router.push('/cadastro-login')}/>
+            <BotaoSecundario titulo="ADICIONAR" width={162}/>
         </View>
         </ScrollView>
-       
-
+        //Falta o onpress do botão adicionar
     )
 }

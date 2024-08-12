@@ -26,7 +26,7 @@ export default function TelaCadastroDadosPessoais() {
         <ScrollView 
         contentContainerStyle={{ flexGrow: 1, paddingTop: 50 }} 
       >
-        <View style={[styles.container, {gap:40, paddingTop:50}]}>
+        <View style={[styles.container, {gap:40, paddingTop:80}]}>
         <StatusBar style="auto" />
             <>
                 <Text style={[{color: "#300030", fontFamily: "Pompiere_400Regular", fontSize: 40}]}>Cadastre-Se</Text>

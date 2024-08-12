@@ -1,7 +1,7 @@
-import TelaAdcionarMembroFamiliar from "../../../screens/add/telaAdicionarMembroFamiliar"
+import TelaAdicionarMembro from "../../../screens/add/telaAdicionarMembroFamiliar"
 
 export default function AdicionarMembroFamiliar(){
     return(
-        <AdicionarMembroFamiliar/>
+        <TelaAdicionarMembro/>
     )
 }

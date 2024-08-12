@@ -23,11 +23,11 @@ export default function TelaCadastroLogin() {
     const router = useRouter();
 
     
-// Função para validar e-mail
-const emailValido = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    // Função para validar e-mail
+    const emailValido = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-// Função para verificar se a senha contém pelo menos 6 números
-const terSeisNumeros = (password) => (password.match(/\d/g) || []).length == 6;
+    // Função para verificar se a senha contém pelo menos 6 números
+    const terSeisNumeros = (password) => (password.match(/\d/g) || []).length == 6;
 
     const validarSenha = (senha1, senha2) => {
         if(senha1 !== senha2) {
