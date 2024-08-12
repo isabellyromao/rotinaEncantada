@@ -1,36 +1,30 @@
-import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
-import { router } from 'expo-router';
-import { useState } from "react";
-import { Link } from "expo-router";
-import { View, TextInput, ScrollView, Text, Image } from "react-native";
-import styles from '../../styles/geral'
-import { BotaoSecundario } from "../../componentes/geral";
-import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
-import { Poppins_300Light, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
-import { NotoSans_600SemiBold } from "@expo-google-fonts/noto-sans";
+import { useFonts } from "expo-font";
+import { View, Text } from "react-native";
+import styles from "../../styles/geral"
+import { BotaoSecundario } from  "../../componentes/geral";
+import { Poppins_400Regular } from "@expo-google-fonts/poppins";
+import { Pompiere_400Regular } from "@expo-google-fonts/pompiere";
 
-export default function TelaCadastroDadosPessoais() {
-
+export default function TelaAdicionarMembro(){
     let [fonteCarregada, fonteErro] = useFonts({
         Pompiere_400Regular,
-        Poppins_300Light, Poppins_600SemiBold,
-        NotoSans_600SemiBold
+        Poppins_400Regular
       });
 
     if (!fonteCarregada && !fonteErro) {
         return null;
     };
-    
+
     return(
-        <ScrollView 
+ <ScrollView 
         contentContainerStyle={{ flexGrow: 1, paddingTop: 50 }} 
       >
         <View style={[styles.container, {gap:40, paddingTop:50}]}>
         <StatusBar style="auto" />
             <>
-                <Text style={[{color: "#300030", fontFamily: "Pompiere_400Regular", fontSize: 40}]}>Cadastre-Se</Text>
-                <Image source={require('../../assets/logo-sapo.png')} style={styles.fundoAvatar}/>
+                <Text style={[{color: "#300030", fontFamily: "Pompiere_400Regular", fontSize: 40}]}>Adicionar Membro Familiar</Text>
+                <Image source={require('../../assets/icone-estrela-Feliz.png')}/>
             </>
             <View style={{gap:20}}>
                 <TextInput style={{borderBottomWidth: 1, width:320, fontFamily:"Poppins_300Light", fontSize: 14}} placeholder="Insira o nome completo"/>
@@ -45,13 +39,12 @@ export default function TelaCadastroDadosPessoais() {
                     </View>
                 </View>
                 <TextInput style={{borderBottomWidth: 1, width:270, fontFamily:"Poppins_300Light", fontSize: 14}} placeholder="Insira ou selecione seu gênero"/>
+                <TextInput style={{borderBottomWidth: 1, width:270, fontFamily:"Poppins_300Light", fontSize: 14}} placeholder="O que essa pessoa é sua?"/>
             </View>
             <BotaoSecundario titulo="CONTINUAR" width={162} onPress={() => router.push('/cadastro-login')}/>
-            <View style={{flexDirection: "row", gap: 10, alignContent: "center", marginTop:100 }}>
-                <Text style={{fontFamily: "Poppins_300Light", fontSize: 14}}>Já tem conta?</Text>
-                <Link style={{fontFamily: "Poppins_600SemiBold", fontSize: 14}} href={'\login'}>Faça Login!</Link>
-            </View>
         </View>
         </ScrollView>
+       
+
     )
 }

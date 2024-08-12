@@ -9,6 +9,7 @@ export default function LayoutRaizDeNavegacao() {
         <Stack.Screen name="(rotas)/cadastro-dados-pessoais/index"/> 
         <Stack.Screen name="(rotas)/cadastro-login/index"/> 
         <Stack.Screen name="(rotas)/cadastro-realizado/index"/> 
+        <Stack.Screen name="(rotas)/adicionar-membro-familiar/index"/> 
         <Stack.Screen name="(rotas)/esqueci-senha/index"/>
         <Stack.Screen name="(rotas)/entrando/index"/>
         <Stack.Screen name="(rotas)/intro/index"/>

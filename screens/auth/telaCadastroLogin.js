@@ -60,13 +60,6 @@ const terSeisNumeros = (password) => (password.match(/\d/g) || []).length == 6;
             const validada = validarSenha(senha, repetirSenha);
             if(validada) {
                 setLoading(true);
-
-                const signInMethods = await fetchSignInMethodsForEmail(auth, email);
-                if (signInMethods.length > 0) {
-                    Alert.alert("Erro", "O e-mail já está cadastrado. \nTente fazer login ou use um e-mail diferente.");
-                    setLoading(false);
-                    return;
-                }
                 await createUserWithEmailAndPassword(auth, email, senha);
                 setLoading(false);
                 router.replace('/tudo-pronto');

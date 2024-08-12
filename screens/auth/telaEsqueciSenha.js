@@ -34,32 +34,24 @@ export default function TelaEsqueciSenha() {
       
           try {
             setLoading(true);
-            
-            // Adiciona um log para verificar o e-mail
-            console.log("Verificando e-mail:", email);
-    
-            // Verifica se o e-mail está associado a uma conta
-            const signInMethods = await fetchSignInMethodsForEmail(auth, email);
-            console.log("Métodos de login encontrados:", signInMethods);
-    
-            if (signInMethods.length === 0) {
-                Alert.alert("Erro", "Não há uma conta registrada com esse e-mail. ");
-                setLoading(false);
-                return;
-            }
-    
             // Envia o e-mail de redefinição de senha
             await sendPasswordResetEmail(auth, email);
             setLoading(false);
-            
-            // Exibe o alerta de sucesso
-            Alert.alert("Sucesso", "Enviamos um e-mail com instruções para redefinir sua senha. \nVerifique sua caixa de entrada.");
+            Alert.alert("Enviamos um e-mail com instruções para redefinir sua senha.", `Verifique sua caixa de entrada em ${email}.`);
             router.replace('/');
         } catch (error) {
+            setLoading(false);
             console.log("Código do erro Firebase:", error.code);
             console.error(error.message);
-            Alert.alert("Erro", "Ocorreu um erro. \nTente novamente mais tarde.");
-            setLoading(false);
+    
+            switch (error.code) {
+                case 'auth/network-request-failed':
+                    Alert.alert("Erro", "Erro de rede. Por favor, \nverifique sua conexão e tente novamente :)");
+                    break;
+                default:
+                    Alert.alert("Erro", "Ocorreu um erro inesperado. \nPor favor, tente novamente mais tarde.");
+                    break;
+            }
         }
     };
 
