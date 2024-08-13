@@ -1,11 +1,7 @@
-import {View, Text} from 'react-native'
-import React from 'react'
-import styles from '../../styles/geral'
+import TelaHome from "../../screens/telaHome";
 
-export default function Home() {
+export default function Home(){
     return(
-        <View style={styles.container}>
-            <Text>Home</Text>
-        </View>
+        <TelaHome/>
     )
 }

@@ -82,6 +82,13 @@ const styles = StyleSheet.create({
     iconeBotaoAtivado: {
       backgroundColor: '#CDE1DE',
     },
+
+    homeHeader:{
+      flex: 1,
+      backgroundColor: '#ffffff',
+      padding: 16,
+      gap:10
+  },
    
 });
 
