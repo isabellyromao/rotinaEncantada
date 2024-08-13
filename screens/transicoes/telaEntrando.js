@@ -9,7 +9,7 @@ export default function TelaEntrando(){
   useEffect(() => {
     // Simula um tempo de carregamento
     setTimeout(() => {
-      router.replace('/(tabs)/index');
+      router.replace('/home');
     }, 2500); // 2.5 segundos de tela de transição
   }, []);
 
