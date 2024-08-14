@@ -93,7 +93,9 @@ const styles = StyleSheet.create({
     homeHeader:{
       width:"100%",
       paddingHorizontal:20,
-      gap:10
+      gap:10,
+      paddingTop:50,
+      paddingBottom:20
   },
    
 });

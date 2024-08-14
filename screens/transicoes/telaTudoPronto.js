@@ -4,6 +4,7 @@ import { View, Text } from "react-native";
 import styles from "../../styles/geral"
 import { ComponenteTransicaoEstrela } from  "../../componentes/geral";
 import { Poppins_400Regular } from "@expo-google-fonts/poppins";
+import { router } from "expo-router";
 import { useEffect } from 'react'
 
 export default function TelaTudoPronto(){
@@ -11,7 +12,7 @@ export default function TelaTudoPronto(){
   useEffect(() => {
     // Simula um tempo de carregamento
     setTimeout(() => {
-      router.replace('/login)');
+      router.replace('/login');
     }, 2500); // 2.5 segundos de tela de transição
   }, []);
 

@@ -5,7 +5,7 @@ import { router, useRouter } from 'expo-router';
 import { Alert } from "react-native";
 import { Link } from "expo-router";
 import { auth } from '../../firebaseConfig';
-import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail  } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification  } from "firebase/auth";
 import { View, TextInput, ScrollView, Text, Image, TouchableOpacity } from "react-native";
 import styles from '../../styles/geral'
 import { BotaoSecundario } from "../../componentes/geral";
@@ -60,9 +60,18 @@ export default function TelaCadastroLogin() {
             const validada = validarSenha(senha, repetirSenha);
             if(validada) {
                 setLoading(true);
-                await createUserWithEmailAndPassword(auth, email, senha);
-                setLoading(false);
-                router.replace('/tudo-pronto');
+                const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
+
+                 // Enviar e-mail de verificação
+                await sendEmailVerification(userCredential.user);
+                // Mostrar o alerta e só então redirecionar
+                Alert.alert(
+                    "Verifique seu E-mail", 
+                    `Um e-mail de verificação foi enviado para ${email}. \n\nPor favor, verifique sua caixa de entrada antes de continuar.`,
+                    [
+                        { text: "OK", onPress: () => router.replace('/tudo-pronto') }
+                    ]
+                );
             }
         } catch (error) {
             console.error(error.code);

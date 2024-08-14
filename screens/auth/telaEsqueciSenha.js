@@ -37,8 +37,14 @@ export default function TelaEsqueciSenha() {
             // Envia o e-mail de redefinição de senha
             await sendPasswordResetEmail(auth, email);
             setLoading(false);
-            Alert.alert("Enviamos um e-mail com instruções para redefinir sua senha.", `Verifique sua caixa de entrada em ${email}.`);
-            router.replace('/');
+            // Mostrar o alerta e só então redirecionar
+            Alert.alert(
+                "Enviamos um e-mail com instruções para redefinir sua senha.", 
+                `Verifique sua caixa de entrada em ${email}.`
+                [
+                    { text: "OK", onPress: () => router.replace('/tudo-pronto') }
+                ]
+            );
         } catch (error) {
             setLoading(false);
             console.log("Código do erro Firebase:", error.code);
