@@ -3,16 +3,9 @@ import { useFonts } from "expo-font";
 import { View, Text } from "react-native";
 import styles from "../../styles/geral"
 import { ComponenteTransicaoEstrela, BotaoSecundario } from  "../../componentes/geral";
-import {useEffect} from 'react'
 import { Poppins_400Regular } from "@expo-google-fonts/poppins";
 
 export default function TelaCadastroRealizado(){
-    useEffect(() => {
-        // Simula um tempo de carregamento
-        setTimeout(() => {
-          router.replace('/(tabs)');
-        }, 2500); // 2.5 segundos de tela de transição
-      }, []);
 
     let [fonteCarregada, fonteErro] = useFonts({
         Poppins_400Regular
@@ -30,12 +23,10 @@ export default function TelaCadastroRealizado(){
                 Deseja adicionar {"\n"}algum membro familiar?
             </Text>
             <View style={styles.botoesLadoaLado}>
-                <BotaoSecundario titulo='SIM' width={68} onPress={() => router.push('/adicionar-perfil')}  />
-                <BotaoSecundario titulo='NÃO' width={68} onPress={() => router.push('/home')}/>
+                <BotaoSecundario titulo='SIM' width={68} onPress={() => router.push('/adicionar-membro-familiar')}  />
+                <BotaoSecundario titulo='NÃO' width={68} onPress={() => router.push('/tudo-pronto')}/>
             </View>
         </View>
     )
 }; 
 
-
-//As telas das duas rotas ainda serão feitas

@@ -5,9 +5,16 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#ffffff',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: "center",
       padding: 16,
   },
+
+  containerHome:{
+    flex: 1,
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+    padding: 16,
+},
 
   containerInicial: {
       flex: 1,
@@ -84,9 +91,8 @@ const styles = StyleSheet.create({
     },
 
     homeHeader:{
-      flex: 1,
-      backgroundColor: '#ffffff',
-      padding: 16,
+      width:"100%",
+      paddingHorizontal:20,
       gap:10
   },
    

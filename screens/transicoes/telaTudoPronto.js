@@ -11,7 +11,7 @@ export default function TelaTudoPronto(){
   useEffect(() => {
     // Simula um tempo de carregamento
     setTimeout(() => {
-      router.replace('/(tabs)');
+      router.replace('/login)');
     }, 2500); // 2.5 segundos de tela de transição
   }, []);
 
