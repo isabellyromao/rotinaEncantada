@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
 
     iconeBotao: {
       borderRadius: 100,
-      height: 35,
-      width: 35,
+      height: 30,
+      width: 30,
       justifyContent: 'center',
       alignItems: 'center',
       alignSelf: "center"
@@ -97,6 +97,14 @@ const styles = StyleSheet.create({
       paddingTop:50,
       paddingBottom:20
   },
+  fundoDados:{
+    backgroundColor: "#FBF4E2",
+    borderRadius: 25,
+    width: "98%",
+    alignItems: "center", 
+    paddingVertical:30,
+    gap: 20
+  }
    
 });
 

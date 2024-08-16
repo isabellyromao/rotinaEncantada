@@ -14,6 +14,9 @@ export default function LayoutRaizDeNavegacao() {
         <Stack.Screen name="(rotas)/entrando/index"/>
         <Stack.Screen name="(rotas)/intro/index"/>
         <Stack.Screen name="(rotas)/tudo-pronto/index"/>  
+
+        {/* Das tabs */}
+        <Stack.Screen name="(rotas)/perfil/index"/>  
       </Stack>
   )
 }

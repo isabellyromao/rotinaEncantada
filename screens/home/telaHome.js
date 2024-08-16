@@ -4,12 +4,8 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Pompiere_400Regular } from "@expo-google-fonts/pompiere";
 import { Poppins_300Light } from "@expo-google-fonts/poppins";
-import styles from "../styles/geral";
+import styles from "../../styles/geral";
 import { StatusBar } from "expo-status-bar";
-
-import {signOut} from "firebase/auth"
-import {auth} from '../firebaseConfig'
-import {BotaoSecundario} from "../componentes/geral"
 
 export default function TelaHome() {
     const [isPressed, setIsPressed] = useState(false);
@@ -24,21 +20,11 @@ export default function TelaHome() {
         return null;
     };
 
-  const handleSair = async () => {
-    try {
-      await signOut(auth);
-      router.replace('/');
-    } catch (error) {
-      console.error(error.code);
-      console.error(error.message);
-    }
-  }
-
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#FFF' }}>
             <ImageBackground 
-                source={require('../assets/flor-de-lotus-fundo.png')} 
+                source={require('../../assets/flor-de-lotus-fundo.png')} 
                 style={styles.containerHome} 
                 resizeMode="contain"
             >
@@ -52,9 +38,9 @@ export default function TelaHome() {
                             style={{ backgroundColor: isPressed ? '#CDE1DE' : 'transparent', borderRadius: 100 }}
                             onPressIn={() => setIsPressed(true)}
                             onPressOut={() => setIsPressed(false)}
-                            onPress={() => router.push('/')}
+                            onPress={() => router.push('/perfil')}
                         >
-                            <Image source={require('../assets/logo-sapo.png')} style={{ width: 60, height: 60 }} resizeMode="contain" />
+                            <Image source={require('../../assets/logo-sapo.png')} style={{ width: 60, height: 60 }} resizeMode="contain" />
                         </Pressable>
                     </View>
                     <Text style={{ fontFamily: "Poppins_300Light", fontSize: 14 }}>Hoje é [Dia Tal]</Text>
@@ -135,9 +121,6 @@ export default function TelaHome() {
 
                     {/* Adicione mais conteúdo aqui */}
                 </ScrollView>
-                <View style={{paddingBottom:60, paddingTop:20}}>
-                    <BotaoSecundario titulo="DESCONECTAR CONTA" onPress={handleSair}/>
-                </View>
             </ImageBackground>
         </SafeAreaView>
     );

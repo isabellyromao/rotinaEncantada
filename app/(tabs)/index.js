@@ -1,4 +1,4 @@
-import TelaHome from "../../screens/telaHome";
+import TelaHome from "../../screens/home/telaHome"
 
 export default function Home(){
     return(
