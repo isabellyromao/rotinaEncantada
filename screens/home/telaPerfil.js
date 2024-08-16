@@ -69,12 +69,14 @@ export default function TelaPerfil(){
                 <BotaoPrincipal titulo="EDITAR" backgroundColor="#415E3E" color="#FFFFFF" width={188} />
             </View>
 
-            <View style={styles.fundoDados}>
+            <View style={[styles.fundoDados]}>
                 <Text style={{ fontFamily: "Pompiere_400Regular", fontSize: 35, borderBottomColor: "#415E3E", borderBottomWidth: 2, paddingBottom: 5, maxWidth: "90%" }}>
                     Dados de Login
                 </Text>
-                <BotaoPrincipal titulo="ATUALIZAR EMAIL" backgroundColor="#415E3E" color="#FFFFFF" width={188} />
-                <BotaoPrincipal titulo="ATUALIZAR SENHA" backgroundColor="#415E3E" color="#FFFFFF" width={188} />
+                <View style={{paddingVertical:20, gap:20}}>
+                    <BotaoPrincipal titulo="ATUALIZAR EMAIL" backgroundColor="#415E3E" color="#FFFFFF" width={188} />
+                    <BotaoPrincipal titulo="ATUALIZAR SENHA" backgroundColor="#415E3E" color="#FFFFFF" width={188} />
+                </View>
             </View>  
 
             <BotaoSecundario titulo="DESCONECTAR CONTA" onPress={handleSair}/>
