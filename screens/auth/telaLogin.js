@@ -44,9 +44,17 @@ export default function TelaLogin() {
 
     try {
       setLoading(true);
-      await signInWithEmailAndPassword(auth, email, senha);
-      setLoading(false);
-      router.replace('/entrando');
+      const userCredential = await signInWithEmailAndPassword(auth, email, senha);
+      const user = userCredential.user;
+
+      // Verifica se o e-mail foi verificado
+      if (user.emailVerified) {
+        setLoading(false);
+        router.replace('/entrando');
+      } else {
+        setLoading(false);
+        Alert.alert("Verificação de E-mail", "Seu e-mail ainda não foi verificado. \nPor favor, verifique sua caixa de entrada antes de fazer login.");
+      }
     } catch (error) {
       console.log("Código do erro Firebase:", error.code);
       console.error(error.message);
