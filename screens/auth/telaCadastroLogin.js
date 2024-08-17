@@ -1,7 +1,7 @@
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { router, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { Alert } from "react-native";
 import { Link } from "expo-router";
 import { auth } from '../../firebaseConfig';
