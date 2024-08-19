@@ -15,7 +15,7 @@ export default function TabsLayout() {
           left: 0,
           elevation: 0,
           height: 60,
-          backgroundColor: "#CDE1DE"
+          backgroundColor: "#CDE1DE",
         },
         tabBarIcon: ({ focused }) => {
           let iconName;
