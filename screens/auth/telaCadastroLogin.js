@@ -42,7 +42,7 @@ export default function TelaCadastroLogin() {
       const handleCadastrar = async () => {
 
         if (!email || !senha || !repetirSenha) {
-            Alert.alert("Erro", "Por favor, preencha todos os campos.");  // Alert for empty fields
+            Alert.alert("Erro", "Por favor, preencha todos os campos."); 
             return;
           }
       

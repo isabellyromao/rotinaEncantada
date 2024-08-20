@@ -41,7 +41,7 @@ export default function TelaPerfil(){
             </View>
 
             <View style={styles.fundoDados}>
-                <Text style={{ fontFamily: "Pompiere_400Regular", fontSize: 35, borderBottomColor: "#415E3E", borderBottomWidth: 2, paddingBottom: 5, maxWidth: "90%" }}>
+                <Text style={{ fontFamily: "Pompiere_400Regular", fontSize: 35, borderBottomColor: "#415E3E", borderBottomWidth: 2, paddingBottom: 5}}>
                     Dados Básicos
                 </Text>
                 
@@ -70,7 +70,7 @@ export default function TelaPerfil(){
             </View>
 
             <View style={[styles.fundoDados]}>
-                <Text style={{ fontFamily: "Pompiere_400Regular", fontSize: 35, borderBottomColor: "#415E3E", borderBottomWidth: 2, paddingBottom: 5, maxWidth: "90%" }}>
+                <Text style={{ fontFamily: "Pompiere_400Regular", fontSize: 35, borderBottomColor: "#415E3E", borderBottomWidth: 2, paddingBottom: 5 }}>
                     Dados de Login
                 </Text>
                 <View style={{paddingVertical:20, gap:20}}>
