@@ -9,7 +9,7 @@ import { BotaoPrincipal, Lembrete} from  "../../componentes/geral"
 import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
 import { Poppins_400Regular, Poppins_300Light, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
 import { auth } from '../../firebaseConfig';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
@@ -28,7 +28,7 @@ export default function TelaLogin() {
 
   const handleLogin = async () => {
     if (!email || !senha) {
-      Alert.alert("Erro", "Por favor, preencha todos os campos.");  // Alert for empty fields
+      Alert.alert("Erro", "Por favor, preencha todos os campos.");  
       return;
     }
 
@@ -53,6 +53,7 @@ export default function TelaLogin() {
         router.replace('/entrando');
       } else {
         setLoading(false);
+        await sendEmailVerification(userCredential.user);
         Alert.alert("Verificação de E-mail", "Seu e-mail ainda não foi verificado. \nPor favor, verifique sua caixa de entrada antes de fazer login.");
       }
     } catch (error) {

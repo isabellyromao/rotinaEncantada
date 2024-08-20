@@ -47,7 +47,7 @@ export default function TelaAddTarefa(){
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
     const [loading, setLoading] = useState(false);
-    const [caracteresRestantes, setCaracteresRestantes] = useState(200); 
+    const [caracteresRestantes, setCaracteresRestantes] = useState(150); 
     const user = auth.currentUser;
 
     const handleDescricaoChange = (text) => {
@@ -66,19 +66,23 @@ export default function TelaAddTarefa(){
           await addDoc(collection(db, "tarefas"),{
             titulo: titulo,
             descricao: descricao,
-            date: selected,
+            dataSelecionada: selected,
             dataDeCriacao : new Date(),
             concluida: false,
-            idUsuario: user.uid
+            userId: user.uid
           });
           Alert.alert("Sucesso", "Tarefa criada com sucesso!");
-          setTitle('');
-          setDescription('');
-          setModalVisible(false);
+          setTitulo('');
+          setDescricao('');
+          setModalVisivel(false);
         } catch (error) {
           Alert.alert("Erro", "Ocorreu um erro ao salvar a tarefa.");
+          console.error(error.code);
+          console.error(error.message);
+        } finally {
+            setLoading(false);
         }
-        }
+      }
 
 
     let [fonteCarregada, fonteErro] = useFonts({
@@ -136,6 +140,7 @@ export default function TelaAddTarefa(){
             <View>
               <Text style={{fontFamily:"NotoSans_600SemiBold", fontSize:16}}>Título</Text>
               <TextInput
+                label="Título"
                 style={{borderBottomWidth: 1, width:320, fontFamily:"Poppins_300Light", fontSize: 14}}
                 value={titulo}
                 onChangeText={setTitulo}
@@ -146,6 +151,7 @@ export default function TelaAddTarefa(){
             <View>
             <Text style={{fontFamily:"NotoSans_600SemiBold", fontSize:16}}>Descrição</Text>
               <TextInput
+                label="Descrição"
                 style={{borderBottomWidth: 1, width:320, fontFamily:"Poppins_300Light", fontSize: 14, maxHeight: 100}}
                 value={descricao}
                 onChangeText={handleDescricaoChange}
