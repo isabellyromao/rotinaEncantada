@@ -6,20 +6,20 @@ import { Pompiere_400Regular } from "@expo-google-fonts/pompiere";
 import { Poppins_300Light } from "@expo-google-fonts/poppins";
 import styles from "../../styles/geral";
 import { StatusBar } from "expo-status-bar";
+import { CalendarioVertical } from "../../componentes/geral";
 
 export default function TelaHome() {
     const [isPressed, setIsPressed] = useState(false);
     const router = useRouter();
 
-    let [fonteCarregada, fonteErro] = useFonts({
+    const [fonteCarregada, fonteErro] = useFonts({
         Pompiere_400Regular,
         Poppins_300Light
     });
 
     if (!fonteCarregada && !fonteErro) {
         return null;
-    };
-
+    }
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#FFF' }}>
@@ -45,14 +45,14 @@ export default function TelaHome() {
                     </View>
                     <Text style={{ fontFamily: "Poppins_300Light", fontSize: 14 }}>Hoje é [Dia Tal]</Text>
                 </View>
+                <CalendarioVertical />
 
                 <ScrollView 
-                    contentContainerStyle={{  width: '100%', alignItems: 'center', paddingBottom:60}}
+                    contentContainerStyle={{ width: '100%', alignItems: 'center', paddingBottom: 60 }}
                     style={{ width: '100%', flex: 1 }}
                     showsVerticalScrollIndicator={false}    // Oculta a barra de rolagem vertical
                     showsHorizontalScrollIndicator={false}  // Oculta a barra de rolagem horizontal
                 >
-
                     {/* Adicione mais conteúdo aqui */}
                 </ScrollView>
             </ImageBackground>
