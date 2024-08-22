@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   tarefaTitulo: {
-    fontSize: 15,
+    fontSize: 1,
     color: "#000000",
   },
   tarefaDescricao: {

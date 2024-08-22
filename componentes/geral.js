@@ -1,10 +1,12 @@
 import { useFonts } from 'expo-font';
 import { StyleSheet } from 'react-native';
 import React, { useState, useRef, useMemo } from 'react';
+import { useRouter } from 'expo-router';
 import { TouchableOpacity, Text, View, Image, Dimensions, TouchableWithoutFeedback, SafeAreaView} from 'react-native';
 import { NotoSans_600SemiBold  } from '@expo-google-fonts/noto-sans';
 import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
 import { Poppins_400Regular } from '@expo-google-fonts/poppins';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import moment from 'moment';
 import 'moment/locale/pt-br'; // Certifique-se de importar o locale para português
 import Swiper from 'react-native-swiper';
@@ -76,6 +78,33 @@ export const Lembrete = () => {
     </View>
   )
 }
+
+export const SetaVoltar = (props) =>{
+  const router = useRouter();
+  return(
+    <TouchableOpacity onPress={router.back || props.onPress} style={styles.setaContainer}>
+        <MaterialCommunityIcons
+            name={"chevron-double-left"}
+            size={35}
+            color={"#300030"}
+        />
+    </TouchableOpacity>
+  )
+}
+
+export const SetaCancelar = (props) =>{
+  const router = useRouter();
+  return(
+    <TouchableOpacity onPress={router.back || props.onPress} style={styles.setaContainer}>
+        <MaterialCommunityIcons
+            name={"close"}
+            size={35}
+            color={"#300030"}
+        />
+    </TouchableOpacity>
+  )
+}
+
 // Configuração de idioma para português
 moment.locale('pt-br');
 
@@ -178,6 +207,12 @@ export const CalendarioVertical = () => {
 }
 
 styles = StyleSheet.create({
+  setaContainer: {
+    alignSelf:"flex-start",
+    position:"absolute",
+    top:80,
+    paddingLeft:50
+  },
   botaoPrincipal: {
     alignItems: 'center',
     justifyContent: "center",
