@@ -104,7 +104,28 @@ const styles = StyleSheet.create({
     alignItems: "center", 
     paddingVertical:30,
     gap: 20
-  }
+  },
+
+  
+  tarefaContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 15,
+    marginVertical: 5,
+    borderRadius: 10,
+  },
+  tarefaTitulo: {
+    fontSize: 15,
+    color: "#000000",
+  },
+  tarefaDescricao: {
+    fontFamily: "Poppins_300Light",
+    fontSize: 14,
+    color: "#000000",
+  },
+  checkIconContainer: {
+    paddingLeft: 10,
+  },
    
 });
 
