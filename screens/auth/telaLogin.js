@@ -101,7 +101,7 @@ export default function TelaLogin() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={[styles.container, { paddingTop: keyboardVisible ? 250 : 16 }]}>
+      <View style={[styles.container, { paddingTop: keyboardVisible ? 250 : "10%" }]}>
         <StatusBar style="auto" />
         <View style={styles.containerSecundario}>
           <Text style={styles.titulo}>Bem-Vindo De Volta</Text>

@@ -85,7 +85,7 @@ export default function TelaEsqueciSenha() {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <View style={[styles.container, { paddingTop: keyboardVisible ? 250 : 16 }]}>
+            <View style={[styles.container, { paddingTop: keyboardVisible ? 250 : "10%" }]}>
                 <StatusBar style="auto" />
                 <SetaVoltar />
                 <Text style={styles.titulo}>Esqueceu a Senha?</Text>
