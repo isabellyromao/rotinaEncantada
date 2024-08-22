@@ -106,45 +106,36 @@ export const SetaCancelar = (props) => {
   )
 }
 
-export const CampoDataDeNascimento = () => {
+
+export const CampoDataDeNascimento = ({ onDataChange }) => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
   const [dia, setDia] = useState(""); 
   const [mes, setMes] = useState(""); 
   const [ano, setAno] = useState(""); 
-  const [dataCapturada, setDataCapturada] = useState(false); 
+  const [dataFormatada, setDataFormatada] = useState(""); 
 
-  // Alterna o estado do seletor de data
   const toggleDatePicker = () => {
     setShow(!show);
   };
 
-  // Manipula a mudança de data
   const onChange = (_, selectedDate) => {
-    if (selectedDate) {
+    if (selectedDate && selectedDate instanceof Date) {
       setDate(selectedDate);
+      const formattedDate = formatDate(selectedDate);
+      setDataFormatada(formattedDate);
+      if (onDataChange) onDataChange(formattedDate);
       setDia(formatDay(selectedDate));  
       setMes(formatMonth(selectedDate)); 
       setAno(formatYear(selectedDate));  
-      setDataCapturada(true); // Indica que a data foi capturada
     }
-    toggleDatePicker();  // Fecha o seletor após a seleção
+    toggleDatePicker(); 
   };
 
-  // Função para formatar o dia
-  const formatDay = (date) => {
-    return date.getDate().toString().padStart(2, '0'); 
-  };
-
-  // Função para formatar o mês
-  const formatMonth = (date) => {
-    return (date.getMonth() + 1).toString().padStart(2, '0'); 
-  };
-
-  // Função para formatar o ano
-  const formatYear = (date) => {
-    return date.getFullYear().toString();
-  };
+  const formatDay = (date) => date.getDate().toString().padStart(2, '0'); 
+  const formatMonth = (date) => (date.getMonth() + 1).toString().padStart(2, '0'); 
+  const formatYear = (date) => date.getFullYear().toString();
+  const formatDate = (date) => `${formatYear(date)}-${formatMonth(date)}-${formatDay(date)}`;
 
   return (
     <View>

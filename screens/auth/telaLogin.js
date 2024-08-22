@@ -101,7 +101,7 @@ export default function TelaLogin() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={[styles.container, { paddingTop: keyboardVisible ? 250 : "10%" }]}>
+      <View style={[styles.container, { paddingTop: keyboardVisible ? 250 : 0 }]}>
         <StatusBar style="auto" />
         <View style={styles.containerSecundario}>
           <Text style={styles.titulo}>Bem-Vindo De Volta</Text>
@@ -158,7 +158,7 @@ export default function TelaLogin() {
           onPress={() => router.push('/esqueci-senha')}/>
         <View style={styles.containerTextoFinal}>
           <Text style={styles.textoFinal}>Ainda não tem uma conta?</Text>
-          <Link style={styles.textoFinalLink} href={'\intro'}>Se cadastre!</Link>
+          <Link style={styles.linkFinal} href={'\intro'}>Se cadastre!</Link>
         </View>
       </View>
     </SafeAreaView>
@@ -222,15 +222,17 @@ const styles = StyleSheet.create({
     fontSize: 14 
   },
   containerTextoFinal:{ 
+    position: "static",
+    top:"20%",
     flexDirection: "row", 
     gap: 10, 
-    alignContent: "center"
+    alignContent: "center", 
   },
   textoFinal:{
     fontFamily: "Poppins_300Light", 
     fontSize: 14 
   },
-  textoFinalLink:{
+  linkFinal:{
     fontFamily: "Poppins_600SemiBold", 
     fontSize: 14
   }
