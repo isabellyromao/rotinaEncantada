@@ -284,6 +284,7 @@ const styles = StyleSheet.create({
     },
     campos: {
         borderBottomWidth: 1,
+        borderColor:"300030",
         width: 320,
         fontFamily: "Poppins_300Light",
         fontSize: 14,

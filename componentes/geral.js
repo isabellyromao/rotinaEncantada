@@ -1,6 +1,6 @@
 import { useFonts } from 'expo-font';
 import { StyleSheet } from 'react-native';
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { useRouter } from 'expo-router';
 import { TouchableOpacity, Text, View, Image, Dimensions, TouchableWithoutFeedback, SafeAreaView, TextInput } from 'react-native';
 import { NotoSans_600SemiBold } from '@expo-google-fonts/noto-sans';
@@ -106,26 +106,34 @@ export const SetaCancelar = (props) => {
     </TouchableOpacity>
   )
 }
-
-
-export const CampoDataDeNascimento = ({ onDataChange }) => {
-  const [date, setDate] = useState(new Date());
+export const CampoDataDeNascimento = ({ onChangeDate, value, editable }) => {
+  const [date, setDate] = useState(value ? new Date(value) : new Date());
   const [show, setShow] = useState(false);
   const [dia, setDia] = useState("");
   const [mes, setMes] = useState("");
   const [ano, setAno] = useState("");
-  const [dataFormatada, setDataFormatada] = useState("");
+
+  useEffect(() => {
+    if (value) {
+      const parsedDate = new Date(value);
+      setDate(parsedDate);
+      setDia(formatDay(parsedDate));
+      setMes(formatMonth(parsedDate));
+      setAno(formatYear(parsedDate));
+    }
+  }, [value]);
 
   const toggleDatePicker = () => {
-    setShow(!show);
+    if (editable) {
+      setShow(!show);
+    }
   };
 
   const onChange = (_, selectedDate) => {
     if (selectedDate && selectedDate instanceof Date) {
       setDate(selectedDate);
       const formattedDate = formatDate(selectedDate);
-      setDataFormatada(formattedDate);
-      if (onDataChange) onDataChange(formattedDate);
+      if (onChangeDate) onChangeDate(formattedDate);
       setDia(formatDay(selectedDate));
       setMes(formatMonth(selectedDate));
       setAno(formatYear(selectedDate));
@@ -133,32 +141,33 @@ export const CampoDataDeNascimento = ({ onDataChange }) => {
     toggleDatePicker();
   };
 
-  const formatDay = (date) => date.getDate().toString().padStart(2, '0');
-  const formatMonth = (date) => (date.getMonth() + 1).toString().padStart(2, '0');
-  const formatYear = (date) => date.getFullYear().toString();
+  // Funções ajustadas para UTC
+  const formatDay = (date) => date.getUTCDate().toString().padStart(2, '0');
+  const formatMonth = (date) => (date.getUTCMonth() + 1).toString().padStart(2, '0');
+  const formatYear = (date) => date.getUTCFullYear().toString();
   const formatDate = (date) => `${formatYear(date)}-${formatMonth(date)}-${formatDay(date)}`;
 
   return (
-    <View style={{gap:5}}>
+    <View style={{ gap: 5 }}>
       <Text style={{ fontFamily: "NotoSans_600SemiBold", fontSize: 14 }}>Data de Nascimento</Text>
       <TouchableOpacity onPress={toggleDatePicker}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <TextInput
-            style={{ borderBottomWidth: 1, width: 75, textAlign: 'center', fontFamily: "Poppins_300Light", fontSize: 14, color: "#000000" }}
+            style={{ borderBottomWidth: 1, borderColor: "#300030", width: 75, textAlign: 'center', fontFamily: "Poppins_300Light", fontSize: 14, color: "#000000" }}
             value={dia}
             editable={false}
             placeholder="Dia"
           />
           <Text style={{ fontSize: 20, alignSelf: "flex-end" }}>/</Text>
           <TextInput
-            style={{ borderBottomWidth: 1, width: 75, textAlign: 'center', fontFamily: "Poppins_300Light", fontSize: 14, color: "#000000" }}
+            style={{ borderBottomWidth: 1, borderColor: "#300030", width: 75, textAlign: 'center', fontFamily: "Poppins_300Light", fontSize: 14, color: "#000000" }}
             value={mes}
             editable={false}
             placeholder="Mês"
           />
           <Text style={{ fontSize: 20, alignSelf: "flex-end" }}>/</Text>
           <TextInput
-            style={{ borderBottomWidth: 1, width: 145, textAlign: 'center', fontFamily: "Poppins_300Light", fontSize: 14, color: "#000000" }}
+            style={{ borderBottomWidth: 1, borderColor: "#300030", width: 145, textAlign: 'center', fontFamily: "Poppins_300Light", fontSize: 14, color: "#000000" }}
             value={ano}
             editable={false}
             placeholder="Ano"
@@ -180,8 +189,10 @@ export const CampoDataDeNascimento = ({ onDataChange }) => {
   );
 };
 
-export const CampoGenero = ({ onGeneroChange }) => {
-  const [genero, setGenero] = useState(null);
+
+export const CampoGenero = ({ onChangeGender, value, editable }) => {
+  const [genero, setGenero] = useState(value || null); // Sincroniza com o valor inicial
+
   const generos = [
     { label: 'Feminino', value: 'Feminino' },
     { label: 'Masculino', value: 'Masculino' },
@@ -189,31 +200,44 @@ export const CampoGenero = ({ onGeneroChange }) => {
     { label: 'Não sei', value: 'Não sei' },
   ];
 
-  const handleChange = (value) => {
-    setGenero(value.value);
-    if (onGeneroChange) {
-      onGeneroChange(value.value);
+  const handleChange = (selectedGenero) => {
+    setGenero(selectedGenero.value);
+    if (onChangeGender) {
+      onChangeGender(selectedGenero.value);
     }
   };
 
+  useEffect(() => {
+    setGenero(value); // Atualiza o estado quando o valor vindo das props muda
+  }, [value]);
+
   return (
-    <View style={{gap:5, marginBottom:10}}>
+    <View style={{ gap: 5, marginBottom: 10 }}>
       <Text style={{ fontFamily: "NotoSans_600SemiBold", fontSize: 14 }}>Gênero</Text>
-      <Dropdown
-        style={styles.campos}
-        textStyle={styles.textoDrop}
-        selectedTextStyle={styles.textoDrop}
-        data={generos}
-        labelField="label"
-        valueField="value"
-        placeholder="Selecione seu gênero"
-        placeholderStyle={styles.placeholderStyle}
-        value={genero}
-        onChange={handleChange}
-      />
+      {editable ? (
+        <Dropdown
+          style={styles.campos}
+          textStyle={styles.textoDrop}
+          selectedTextStyle={styles.textoDrop}
+          data={generos}
+          labelField="label"
+          valueField="value"
+          placeholder="Selecione seu gênero"
+          placeholderStyle={styles.placeholderStyle}
+          value={genero}
+          onChange={handleChange}
+        />
+      ) : (
+        <TextInput
+          style={styles.campos}
+          value={value}
+          editable={false}
+        />
+      )}
     </View>
   );
-}
+};
+
 
 
 // Configuração de idioma para português
@@ -409,10 +433,12 @@ styles = StyleSheet.create({
     color: '#300030',
     borderBottomWidth: 1,
     marginBottom: 20,
+    borderColor:'#300030',
   },
 
   campos: {
     borderBottomWidth: 1,
+    borderColor:'#300030',
     width: 320,
     fontFamily: "Poppins_300Light",
     fontSize: 14,
