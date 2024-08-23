@@ -2,7 +2,7 @@ import { useFonts } from 'expo-font';
 import { StyleSheet } from 'react-native';
 import React, { useState, useRef, useMemo } from 'react';
 import { useRouter } from 'expo-router';
-import { TouchableOpacity, Text, View, Image, Dimensions, TouchableWithoutFeedback, SafeAreaView , TextInput} from 'react-native';
+import { TouchableOpacity, Text, View, Image, Dimensions, TouchableWithoutFeedback, SafeAreaView, TextInput } from 'react-native';
 import { NotoSans_600SemiBold } from '@expo-google-fonts/noto-sans';
 import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
 import { Poppins_400Regular } from '@expo-google-fonts/poppins';
@@ -11,6 +11,7 @@ import moment from 'moment';
 import 'moment/locale/pt-br'; // Certifique-se de importar o locale para português
 import Swiper from 'react-native-swiper';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { Dropdown } from 'react-native-element-dropdown';
 
 export const BotaoPrincipal = (props) => {
   let [fonteCarregada, fonteErro] = useFonts({
@@ -110,10 +111,10 @@ export const SetaCancelar = (props) => {
 export const CampoDataDeNascimento = ({ onDataChange }) => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
-  const [dia, setDia] = useState(""); 
-  const [mes, setMes] = useState(""); 
-  const [ano, setAno] = useState(""); 
-  const [dataFormatada, setDataFormatada] = useState(""); 
+  const [dia, setDia] = useState("");
+  const [mes, setMes] = useState("");
+  const [ano, setAno] = useState("");
+  const [dataFormatada, setDataFormatada] = useState("");
 
   const toggleDatePicker = () => {
     setShow(!show);
@@ -125,39 +126,39 @@ export const CampoDataDeNascimento = ({ onDataChange }) => {
       const formattedDate = formatDate(selectedDate);
       setDataFormatada(formattedDate);
       if (onDataChange) onDataChange(formattedDate);
-      setDia(formatDay(selectedDate));  
-      setMes(formatMonth(selectedDate)); 
-      setAno(formatYear(selectedDate));  
+      setDia(formatDay(selectedDate));
+      setMes(formatMonth(selectedDate));
+      setAno(formatYear(selectedDate));
     }
-    toggleDatePicker(); 
+    toggleDatePicker();
   };
 
-  const formatDay = (date) => date.getDate().toString().padStart(2, '0'); 
-  const formatMonth = (date) => (date.getMonth() + 1).toString().padStart(2, '0'); 
+  const formatDay = (date) => date.getDate().toString().padStart(2, '0');
+  const formatMonth = (date) => (date.getMonth() + 1).toString().padStart(2, '0');
   const formatYear = (date) => date.getFullYear().toString();
   const formatDate = (date) => `${formatYear(date)}-${formatMonth(date)}-${formatDay(date)}`;
 
   return (
-    <View>
-      <Text style={{fontFamily:"NotoSans_600SemiBold", fontSize:14}}>Data de Nascimento</Text>
+    <View style={{gap:5}}>
+      <Text style={{ fontFamily: "NotoSans_600SemiBold", fontSize: 14 }}>Data de Nascimento</Text>
       <TouchableOpacity onPress={toggleDatePicker}>
-        <View style={{flexDirection:"row", alignItems: "center", marginBottom:20}}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
           <TextInput
-            style={{borderBottomWidth: 1, width:75, textAlign: 'center', fontFamily:"Poppins_300Light", fontSize: 14, color:"#000000"}}
-            value={dia} 
+            style={{ borderBottomWidth: 1, width: 75, textAlign: 'center', fontFamily: "Poppins_300Light", fontSize: 14, color: "#000000" }}
+            value={dia}
             editable={false}
             placeholder="Dia"
           />
-          <Text style={{fontSize: 20, alignSelf: "flex-end"}}>/</Text>
+          <Text style={{ fontSize: 20, alignSelf: "flex-end" }}>/</Text>
           <TextInput
-            style={{borderBottomWidth: 1, width:75, textAlign: 'center', fontFamily:"Poppins_300Light", fontSize: 14, color:"#000000"}}
-            value={mes} 
+            style={{ borderBottomWidth: 1, width: 75, textAlign: 'center', fontFamily: "Poppins_300Light", fontSize: 14, color: "#000000" }}
+            value={mes}
             editable={false}
             placeholder="Mês"
           />
-          <Text style={{fontSize: 20, alignSelf: "flex-end"}}>/</Text>
+          <Text style={{ fontSize: 20, alignSelf: "flex-end" }}>/</Text>
           <TextInput
-            style={{borderBottomWidth: 1, width:145, textAlign: 'center', fontFamily:"Poppins_300Light", fontSize: 14, color:"#000000"}}
+            style={{ borderBottomWidth: 1, width: 145, textAlign: 'center', fontFamily: "Poppins_300Light", fontSize: 14, color: "#000000" }}
             value={ano}
             editable={false}
             placeholder="Ano"
@@ -179,6 +180,40 @@ export const CampoDataDeNascimento = ({ onDataChange }) => {
   );
 };
 
+export const CampoGenero = ({ onGeneroChange }) => {
+  const [genero, setGenero] = useState(null);
+  const generos = [
+    { label: 'Feminino', value: 'Feminino' },
+    { label: 'Masculino', value: 'Masculino' },
+    { label: 'Outro', value: 'Outro' },
+    { label: 'Não sei', value: 'Não sei' },
+  ];
+
+  const handleChange = (value) => {
+    setGenero(value.value);
+    if (onGeneroChange) {
+      onGeneroChange(value.value);
+    }
+  };
+
+  return (
+    <View style={{gap:5, marginBottom:10}}>
+      <Text style={{ fontFamily: "NotoSans_600SemiBold", fontSize: 14 }}>Gênero</Text>
+      <Dropdown
+        style={styles.campos}
+        textStyle={styles.textoDrop}
+        selectedTextStyle={styles.textoDrop}
+        data={generos}
+        labelField="label"
+        valueField="value"
+        placeholder="Selecione seu gênero"
+        placeholderStyle={styles.placeholderStyle}
+        value={genero}
+        onChange={handleChange}
+      />
+    </View>
+  );
+}
 
 
 // Configuração de idioma para português
@@ -375,4 +410,22 @@ styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginBottom: 20,
   },
-});
+
+  campos: {
+    borderBottomWidth: 1,
+    width: 320,
+    fontFamily: "Poppins_300Light",
+    fontSize: 14,
+    color: "#000000"
+  },
+  textoDrop: {
+    fontFamily: 'Poppins_300Light',
+    fontSize: 14,
+    color: "#000000"
+  },
+  placeholderStyle: {
+    color: "#505050",
+    fontFamily: "Poppins_300Light",
+    fontSize: 14
+  },
+})

@@ -69,7 +69,7 @@ export default function TelaIntro() {
             <Text style={styles.renderTexto}>COMEÇAR JORNADA</Text>
           </View>
         )}
-        onDone={() => router.push('/cadastro-dados-pessoais')}
+        onDone={() => router.push('/cadastro')}
         showNextButton={true}
         bottomButton
       />

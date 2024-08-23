@@ -3,12 +3,37 @@ import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { Link, useRouter } from "expo-router";
 import { Alert, Text, View, Image, TextInput, TouchableOpacity, SafeAreaView, StyleSheet, Keyboard } from "react-native";
-import { auth } from '../../firebaseConfig';
-import { signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { auth, db} from '../../firebaseConfig';
+import { getAuth } from "firebase/auth";
+import { getDoc, deleteDoc, doc, setDoc } from 'firebase/firestore';
+import { onAuthStateChanged,signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { BotaoPrincipal, Lembrete } from "../../componentes/geral"
 import { Pompiere_400Regular } from '@expo-google-fonts/pompiere';
 import { Poppins_400Regular, Poppins_300Light, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
+
+async function checkEmailVerification() {
+  const auth = getAuth();
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      await user.reload(); // Atualiza o status do usuário
+      if (user.emailVerified) {
+        try {
+          const userRef = doc(db, 'dadosTemporarios', user.uid);
+          const userData = (await getDoc(userRef)).data();
+
+          if (userData) {
+            await setDoc(doc(db, 'usuarios', user.uid), userData);
+            await deleteDoc(userRef); // Remove dados da coleção 'dadosTemporarios'
+            console.log('Dados do usuário movidos para a coleção principal.');
+          }
+        } catch (error) {
+          console.error('Erro ao verificar o e-mail ou mover dados:', error);
+        }
+      }
+    }
+  });
+}
 
 const emailValido = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 const terSeisNumeros = (password) => (password.match(/\d/g) || []).length == 6;
@@ -62,12 +87,13 @@ export default function TelaLogin() {
 
       // Verifica se o e-mail foi verificado
       if (user.emailVerified) {
+        await checkEmailVerification(); // Chama a função de verificação
         setLoading(false);
         router.replace('/entrando');
       } else {
-        setLoading(false);
-        await sendEmailVerification(userCredential.user);
-        Alert.alert("Verificação de E-mail", "Seu e-mail ainda não foi verificado. \nPor favor, verifique sua caixa de entrada antes de fazer login.");
+          setLoading(false);
+          await sendEmailVerification(userCredential.user);
+          Alert.alert("Verificação de E-mail", "Seu e-mail ainda não foi verificado. \nPor favor, verifique sua caixa de entrada antes de fazer login.");
       }
     } catch (error) {
       console.log("Código do erro Firebase:", error.code);
