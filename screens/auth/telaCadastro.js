@@ -182,6 +182,7 @@ export default function TelaCadastro() {
                                 placeholder="Insira o nome completo"
                                 value={nome}
                                 onChangeText={(text) => setNome(text)}
+                                autoCapitalize="words" 
                             />
                             <View style={{ gap: 5 }}>
                                 <Text style={{ fontFamily: "NotoSans_600SemiBold", fontSize: 14 }}>Email</Text>

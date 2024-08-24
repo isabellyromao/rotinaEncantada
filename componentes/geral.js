@@ -238,8 +238,6 @@ export const CampoGenero = ({ onChangeGender, value, editable }) => {
   );
 };
 
-
-
 // Configuração de idioma para português
 moment.locale('pt-br');
 
@@ -252,12 +250,12 @@ export const CalendarioVertical = () => {
   });
 
   const swiper = useRef();
-  const [valor, setValor] = useState(new Date());
+  const [valor, setValor] = useState(null); // Valor inicial null
   const [semana, setSemana] = useState(0);
 
   // Calcula as semanas com base no estado da semana
   const semanas = useMemo(() => {
-    const inicio = moment().add(semana, 'weeks').startOf('week');
+    const inicio = moment().add(semana, 'weeks');
     return [-1, 0, 1].map((adj) => {
       return Array.from({ length: 7 }).map((_, index) => {
         const data = moment(inicio).add(adj, 'weeks').add(index, 'days');
@@ -269,7 +267,7 @@ export const CalendarioVertical = () => {
     });
   }, [semana]);
 
-  const mesAtual = moment(valor).format('MMMM YYYY').toUpperCase();
+  const mesAtual = moment().add(semana, 'weeks').format('MMMM YYYY').toUpperCase();
   const hoje = new Date();
 
   if (!fonteCarregada) {
@@ -285,14 +283,11 @@ export const CalendarioVertical = () => {
         loop={false}
         showsPagination={false}
         onIndexChanged={(indice) => {
-          if (indice === 1) {
-            return;
-          }
+          if (indice === 1) return;
           setTimeout(() => {
             const novoIndice = indice - 1;
             const novaSemana = semana + novoIndice;
             setSemana(novaSemana);
-            setValor(moment(valor).add(novoIndice, 'weeks').toDate());
             swiper.current.scrollTo(1, false);
           }, 100);
         }}
@@ -300,12 +295,12 @@ export const CalendarioVertical = () => {
         {semanas.map((datas, index) => (
           <View style={styles.linhaItens} key={index}>
             {datas.map((item, indexData) => {
-              const isAtivo = valor.toDateString() === item.data.toDateString();
+              const isAtivo = valor && valor.toDateString() === item.data.toDateString();
               const isHoje = hoje.toDateString() === item.data.toDateString();
               return (
                 <TouchableWithoutFeedback
                   key={indexData}
-                  onPress={() => setValor(item.data)}
+                  onPress={() => setValor(item.data)} // Atualiza o valor ao clicar
                 >
                   <View
                     style={[
@@ -339,7 +334,7 @@ export const CalendarioVertical = () => {
       </Swiper>
     </View>
   );
-}
+};
 
 styles = StyleSheet.create({
   setaContainer: {
@@ -386,23 +381,24 @@ styles = StyleSheet.create({
   },
   seletor: {
     flex: 1,
-    maxHeight: 120,
     alignItems: 'center',
-    justifyContent: "center",
+    justifyContent: 'center',
+    maxHeight: 150, // Ajuste a altura máxima do calendário
+    minHeight: 150, // Ajuste a altura mínima do calendário
   },
 
   linhaItens: {
-    width: width,
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    paddingHorizontal: 17,
-
+    alignItems: 'center',
+    justifyContent: 'space-between', // Garante que todos os itens fiquem distribuídos de forma uniforme
+    paddingHorizontal: 16, // Adiciona espaçamento horizontal adequado
+    width: '100%', // Garante que a linha ocupe toda a largura disponível
   },
+
   item: {
     flex: 1,
     height: 50,
-    marginHorizontal: 4,
+    marginHorizontal: 2, // Reduz a margem para evitar que o último item seja cortado
     paddingVertical: 6,
     paddingHorizontal: 4,
     borderWidth: 1,
@@ -410,30 +406,34 @@ styles = StyleSheet.create({
     borderColor: '#300030',
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'center', // Centraliza o conteúdo verticalmente
   },
+
   itemHoje: {
     backgroundColor: '#FBF4E2', // Cor de fundo específica para o dia atual
   },
+
   itemAtivo: {
     backgroundColor: '#CDE1DE', // Cor de fundo específica para o dia selecionado
   },
+
   diaDaSemana: {
     fontSize: 12,
     fontFamily: "Pompiere_400Regular",
     color: '#000000',
   },
+
   data: {
     fontSize: 16,
     fontFamily: "Poppins_400Regular",
     color: '#000000',
   },
+
   mesAtual: {
     fontSize: 18,
     fontFamily: "Poppins_400Regular",
     color: '#300030',
-    borderBottomWidth: 1,
     marginBottom: 20,
-    borderColor:'#300030',
   },
 
   campos: {

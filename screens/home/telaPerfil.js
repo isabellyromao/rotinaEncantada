@@ -14,7 +14,14 @@ import { BotaoSecundario } from "../../componentes/geral"
 export default function TelaPerfil() {
     const [editar, setEditar] = useState(false);
     const [userData, setUserData] = useState({nome: '', dataNascimento: '', genero: ''});
-
+   
+    const capitalizeEachWord = (string) => {
+        return string
+            .split(' ') // Divide a string em palavras
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitaliza a primeira letra de cada palavra
+            .join(' '); // Junta as palavras novamente em uma string
+    };
+    
     const fetchUserDado = async () => {
         const user = auth.currentUser;
         if (user) {
@@ -207,9 +214,10 @@ export default function TelaPerfil() {
                                 <Text style={styles.label}>Nome Completo</Text>
                                 <TextInput
                                     style={styles.campo}
-                                    value={userData.nome}
+                                    value={capitalizeEachWord(userData.nome)}
                                     editable={editar}
                                     onChangeText={(text) => setUserData(prevData => ({ ...prevData, nome: text }))}
+                                    autoCapitalize="words" // Capitaliza a primeira letra de cada palavra
                                 />
                             </View>
                             <View>
