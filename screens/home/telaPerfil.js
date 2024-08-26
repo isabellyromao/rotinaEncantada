@@ -3,10 +3,11 @@ import { StatusBar } from "expo-status-bar";
 import { useState, useEffect } from "react";
 import { router } from "expo-router";
 import { View, Alert, Text, ScrollView, Image, TextInput, Pressable, StyleSheet, SafeAreaView } from "react-native";
-import { getAuth, signOut, deleteUser, EmailAuthProvider, reauthenticateWithCredential  } from "firebase/auth"
+import { signOut, deleteUser, EmailAuthProvider, reauthenticateWithCredential  } from "firebase/auth"
 import { auth, db } from '../../firebaseConfig'
 import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
-import { BotaoPrincipal, SetaVoltar, CampoDataDeNascimento, CampoGenero } from "../../componentes/geral";
+import { BotaoPrincipal, SetaVoltar} from "../../componentes/geral";
+import { CampoDataDeNascimento, CampoGenero } from "../../componentes/tabs";
 import { Pompiere_400Regular } from "@expo-google-fonts/pompiere";
 import { NotoSans_600SemiBold } from "@expo-google-fonts/noto-sans";
 import { BotaoSecundario } from "../../componentes/geral"

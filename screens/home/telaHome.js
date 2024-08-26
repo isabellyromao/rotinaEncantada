@@ -10,7 +10,7 @@ import { getFirestore, getDoc } from 'firebase/firestore';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Pompiere_400Regular } from "@expo-google-fonts/pompiere";
 import { Poppins_300Light, Poppins_500Medium } from "@expo-google-fonts/poppins";
-import { CalendarioVertical } from "../../componentes/geral";
+import { CalendarioVertical } from "../../componentes/tabs";
 
 export default function TelaHome() {
     const [isPressed, setIsPressed] = useState(false);
