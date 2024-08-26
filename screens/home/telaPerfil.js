@@ -87,11 +87,16 @@ export default function TelaPerfil() {
                                     Alert.alert("Erro", "Você precisa ter pelo menos 15 anos para se cadastrar.");
                                     return;
                                 }
+
+                                const dadosAtualizados = {
+                                    ...userData,
+                                    idade // Inclui a idade calculada
+                                };
     
                                 // Atualizar dados no Firestore
                                 const user = auth.currentUser;
                                 if (user) {
-                                    await setDoc(doc(db, 'usuarios', user.uid), userData, { merge: true });
+                                    await setDoc(doc(db, 'usuarios', user.uid), dadosAtualizados, { merge: true });
                                     
                                     Alert.alert("Sucesso", "Dados atualizados com sucesso!");
                                     setEditar(false);  // Desativa o modo de edição após salvar

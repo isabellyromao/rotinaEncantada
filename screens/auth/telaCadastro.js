@@ -130,10 +130,6 @@ export default function TelaCadastro() {
         }
     };
 
-    const handleGeneroChange = (value) => {
-        setGenero(value);
-    };
-
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener(
             'keyboardDidShow',
@@ -194,8 +190,8 @@ export default function TelaCadastro() {
                                     keyboardType='email-address'
                                 />
                             </View>
-                            <CampoDataDeNascimento onDataChange={(data) => setDataNascimento(data)} />
-                            <CampoGenero onGeneroChange={handleGeneroChange} />
+                            <CampoDataDeNascimento  onChangeDate={(data) => setDataNascimento(data)} value={dataNascimento} editable={true}  />
+                            <CampoGenero  onChangeGender={(gender) => setGenero(gender)} value={genero} editable={true} />
 
                         </View>
                         <View style={{ gap: 20 }}>

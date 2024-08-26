@@ -106,6 +106,7 @@ export const SetaCancelar = (props) => {
     </TouchableOpacity>
   )
 }
+
 export const CampoDataDeNascimento = ({ onChangeDate, value, editable }) => {
   const [date, setDate] = useState(value ? new Date(value) : new Date());
   const [show, setShow] = useState(false);
