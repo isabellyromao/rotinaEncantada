@@ -160,7 +160,7 @@ export const CampoGenero = ({ onChangeGender, value, editable }) => {
 
 // Configuração de idioma para português
 moment.locale('pt-br');
-export const CalendarioVertical = () => {
+export const CalendarioVertical = ({ onDateSelected }) => {
   const [fonteCarregada] = useFonts({
     Pompiere_400Regular,
     Poppins_400Regular,
@@ -221,7 +221,11 @@ export const CalendarioVertical = () => {
               return (
                 <TouchableWithoutFeedback
                   key={indexData}
-                  onPress={() => setValor(item.data)} 
+                  onPress={() =>  {
+                    setValor(item.data);
+                    onDateSelected(item.data); 
+                  }} 
+            
                 >
                   <View
                     style={[

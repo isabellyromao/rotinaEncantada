@@ -146,7 +146,7 @@ export default function TelaHome() {
                     </View>
                     <Text style={styles.subtituloHeader}>Hoje é {capitalizeEachWord(diaAtual)}</Text>
                 </View>
-                <CalendarioVertical />
+                <CalendarioVertical onDateSelected={setDataSelecionada} />
 
                 <ScrollView
                     contentContainerStyle={{ width: '100%', paddingBottom: 60}}
@@ -154,7 +154,10 @@ export default function TelaHome() {
                     showsVerticalScrollIndicator={false}    
                     showsHorizontalScrollIndicator={false}  
                 >
-                    {tarefas.map((tarefa) => (
+                    {tarefasFiltradas.length === 0 ? (
+                    <Text style={styles.semTarefas}>Você não tem tarefas para hoje.</Text>
+                    ) : (
+                    tarefasFiltradas.map((tarefa) => (
                         <View key={tarefa.id} 
                             style={[styles.tarefaContainer, { backgroundColor: tarefa.corCategoria ? tarefa.corCategoria : "#FBF4E2" }]}>
                             <View style={{ flex: 1 }}>
@@ -169,7 +172,8 @@ export default function TelaHome() {
                                 />
                             </TouchableOpacity>
                         </View>
-                    ))}
+                    ))
+                    )}
                 </ScrollView>
             </ImageBackground>
         </SafeAreaView>
@@ -225,4 +229,11 @@ const styles = StyleSheet.create({
     checkIconContainer: {
     paddingLeft: 10,
     },
+    semTarefas:{
+        alignSelf:"center",
+        paddingTop:180,
+        fontFamily:"Pompiere_400Regular",
+        fontSize:30
+
+    }
 })
